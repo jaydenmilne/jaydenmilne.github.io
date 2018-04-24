@@ -1,0 +1,26 @@
+table {
+    border-collapse : collapse;
+}
+
+table, th, td {
+    font-family: monospace;
+    border: .1em solid;
+}
+
+.row-header {
+    font-weight: bold;
+}
+
+td, td {
+    padding-left : .5em;
+    padding-right : .5em;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#matrix-input {
+    height : 10em;
+    width : 10em;
+}
