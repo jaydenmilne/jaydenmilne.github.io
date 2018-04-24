@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>
+            Floyd's Algorithm Calculator
+        </title>
+        <link rel="stylesheet" type="text/css" href="algorithm.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, user-scalable=yes" />
+    </head>
+    <body>
+        <h3>
+            Input matrix:
+        </h3>
+        <p>Input a distance array as CSV. '-' denotes infinity.</p>
+        <div>
+            <textarea id="matrix-input">
+0,1,-,1,-
+1,0,1,-,-
+-,-,0,-,1
+1,-,-,0,1
+-,1,-,-,0</textarea>
+        </div>
+        <div>
+            <button id="calculate-button">Calculate</button> 
+        </div>
+        <div id="results">
+        </div>
+        <script src="algorithms.js"></script> 
+    </body>
+</html>

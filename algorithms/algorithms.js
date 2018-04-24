@@ -30,10 +30,10 @@ function write_matrix(matrix, old_matrix, tag) {
         lbl.className = 'row-header';
         row.appendChild(lbl);
 
-        mtrx_row = matrix[i];
+        var mtrx_row = matrix[i];
         for (var j = 0; j < mtrx_row.length; ++j) {
             td = document.createElement("td")
-            td.innerText = mtrx_row[j];
+            td.innerText = (mtrx_row[j] == Infinity) ? '-' : mtrx_row[j];
 
             if (matrix[i][j] != old_matrix[i][j])
                 td.className = 'row-header';
@@ -64,12 +64,12 @@ function do_warshall(matrix) {
             if (rw == piv)
                 continue;
             // If rw ~ piv
-            if (matrix[rw][piv] != '0') {
+            if (matrix[rw][piv] != 0) {
                 for (var col = 0; col < matrix.length; ++col) {
                     if (col == piv)
                         continue;
-                    if (matrix[piv][col] != '0')
-                        matrix[rw][col] = '1';
+                    if (matrix[piv][col] != 0)
+                        matrix[rw][col] = 1;
                 }
             }
             }
@@ -91,6 +91,36 @@ function do_warshall(matrix) {
     }
     */
 
+function do_floyd(matrix) {
+    clear_results();
+    write_matrix(matrix, matrix, "Initial Matrix:")
+    var old_matrix = matrix.map(function(arr) {
+        return arr.slice();
+    });
+
+    // Modified Floyd's that we did in class
+    for (var piv = 0; piv < matrix.length; ++piv) {
+        for (var rw = 0; rw < matrix.length; ++rw) {
+            if (rw == piv)
+                continue;
+            // If rw ~ piv
+            if (matrix[rw][piv] != Infinity) {
+                var a = matrix[rw][piv];
+                for (var col = 0; col < matrix.length; ++col) {
+                    if (col == piv)
+                        continue;
+                    var b = matrix[piv][col];
+                    if (a + b < matrix[rw][col])
+                        matrix[rw][col] = a+b;
+                }
+            }
+            }
+        write_matrix(matrix, old_matrix, "Pivot = " + letr(piv));
+        old_matrix = matrix.map(function(arr) {
+            return arr.slice();
+        });
+        }
+    }
 function oops(text) {
     alert("Oops: " + text);
     throw "crash";
@@ -102,18 +132,36 @@ function compute_matrix() {
 
     for (var i = 0; i < input.length; ++i) {
         row = input[i];
-        // Should be string with same length as array legnth
-        if (row.length != input.length) 
-            oops("The array is malformed (a row's length does not match the array's height).");
-        input[i] = row.split("");        
-    }
 
+        if (row.includes(',')) {
+            row = row.split(',');
+            if (row.length != input.length) 
+                oops("The array is malformed (a row's length does not match the array's height).");
+            
+            for (var j = 0; j < row.length; ++j) {
+                if (row[j] == '-') {
+                    row[j] = Infinity;
+                }
+                row[j] = parseFloat(row[j]);
+            }
+
+            input[i] = row;
+        } else {
+        // Should be string with same length as array legnth
+            if (row.length != input.length) 
+                oops("The array is malformed (a row's length does not match the array's height).");
+            input[i] = row.split("");
+        }
+    }
     return input;
 }
 
 function do_algorithm() {
     matrix = compute_matrix();
+    if (document.title.includes("Warshall"))
         do_warshall(matrix);
+    else if (document.title.includes("Floyd"))
+        do_floyd(matrix);
 }
 
 document.getElementById("calculate-button").addEventListener("click", do_algorithm)
