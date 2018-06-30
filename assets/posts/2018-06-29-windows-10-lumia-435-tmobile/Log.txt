@@ -1,0 +1,101 @@
+----------------------------FCLog Log: 06/29/2018 23:20:59 Session Id: d07305c8-c3ab-4c1a-9c3e-5123cbfe47be----------------------------
+06/29/2018 23:20:59  [Verbose] [App] OnLaunched
+06/29/2018 23:20:59  [Verbose] [AboutPageViewModel] Initialize
+06/29/2018 23:20:59  [Information] [DeviceInformationAccess] Loading device information...
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Loading additional device information...
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Retrieval is done.
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Checking if a DU session is in progress...
+06/29/2018 23:20:59  [Verbose] [DeviceInformationAccess] Getting some final device information...
+06/29/2018 23:21:00  [Verbose] [DeviceInformationAccess] Analyzing device update keys.
+06/29/2018 23:21:00  [Verbose] [DeviceInformationAccess] Retrieving device targeting keys.
+06/29/2018 23:21:00  [Information] [DeviceInformationAccess] Finished getting device information
+06/29/2018 23:21:00  [Information] [AboutPageViewModel] Current Flight Name = Not Set
+06/29/2018 23:21:00  [Warning] [DeviceInformationAccess] Cannot find the FlightingService keys.
+06/29/2018 23:21:00  [Verbose] [AboutPageViewModel] Initialize done
+06/29/2018 23:21:00  [Information] [App] App version: 1.4.0.1
+06/29/2018 23:21:00  [Information] [App] OS version: 8.10.15148.160
+06/29/2018 23:21:00  [Information] [App] Branch: WPB_CXE_R2
+06/29/2018 23:21:00  [Information] [App] OEM: NOKIA
+06/29/2018 23:21:00  [Information] [App] Model: RM-1070_1000
+06/29/2018 23:21:00  [Information] [App] FW version: 02075.10000.15215.36107
+06/29/2018 23:21:00  [Information] [App] IMEI: 357782061875284
+06/29/2018 23:21:00  [Information] [App] MEID: Not Available
+06/29/2018 23:21:00  [Information] [App] MDN: Not Available
+06/29/2018 23:21:00  [Information] [App] MOID: TMO-US
+06/29/2018 23:21:00  [Information] [App] Feedback ID: 88770D574CEEC3DAD685E0768F971EC7
+06/29/2018 23:21:00  [Information] [App] WPS ID: 0f4e85bd29b7b98da67880c2d66cc8b7721c12ab5fbe512e341fef3364c57116
+06/29/2018 23:21:00  [Information] [App] Sys free space: 426,803,200 bytes
+06/29/2018 23:21:00  [Information] [App] A-Last run: Not Available
+06/29/2018 23:21:00  [Information] [App] A-Trigger: Not Available
+06/29/2018 23:21:00  [Information] [App] A-Pending: 0
+06/29/2018 23:21:00  [Information] [App] Cab refresh: Not Available
+06/29/2018 23:21:00  [Information] [App] Cab timestamp: Not Available
+06/29/2018 23:21:00  [Information] [App] DPP unlocked: False
+06/29/2018 23:21:00  [Information] The language en-US has flow direction set to LeftToRight.
+06/29/2018 23:21:00  [Verbose] WelcomePage
+06/29/2018 23:21:00  [Verbose] WelcomePageViewModel
+06/29/2018 23:21:00  [Verbose] [App] UseSettingsExperience registry key read failure: hr = 0x80070002
+06/29/2018 23:21:00  [Information] [WelcomePageViewModel] Authentication method reset to default: BuiltIn
+06/29/2018 23:21:00  [Verbose] [App] UseSettingsExperience registry key read failure: hr = 0x80070002
+06/29/2018 23:21:00  [Verbose] [WelcomePage] OnNavigatedTo
+06/29/2018 23:21:00  [Verbose] [App] UseSettingsExperience registry key read failure: hr = 0x80070002
+06/29/2018 23:21:00  [Verbose] [App] UseSettingsExperience registry key read failure: hr = 0x80070002
+06/29/2018 23:21:00  [Verbose] [WelcomePage] Page_Loaded
+06/29/2018 23:21:00  [Information] BackgroundProvisioner: Running forced provisioning.
+06/29/2018 23:21:00  [Information] BackgroundProvisioner: Nothing to be done.
+06/29/2018 23:21:10  [Verbose] EnrollmentPage
+06/29/2018 23:21:10  [Verbose] [App] UseSettingsExperience registry key read failure: hr = 0x80070002
+06/29/2018 23:21:10  [Verbose] [EnrollmentPage] OnNavigatedTo
+06/29/2018 23:21:12  [Information] [EnrollmentPageViewModel] Authenticating user with built in MSA account...
+06/29/2018 23:21:12  [Information] [EnrollmentPageViewModel] Exchange tokens
+06/29/2018 23:21:12  [Information] [Authorization] Exchange tokens (state=0)
+06/29/2018 23:21:15  [Error] [Authorization] Webservice error occured during /MsaRedirection. NotFound - 
+06/29/2018 23:21:15  [Error] [EnrollmentPageViewModel] Exchange tokens encountered an error: System.Net.WebException: The remote server returned an error: NotFound.
+   at Microsoft.Phone.Flights.Authorization.<ExchangeTokens>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.Phone.UpdateProvisioning.ViewModels.EnrollmentPageViewModel.<ExchangeTokens>d__41.MoveNext()
+06/29/2018 23:21:21  [Verbose] WelcomePage
+06/29/2018 23:21:21  [Verbose] WelcomePageViewModel
+06/29/2018 23:21:21  [Verbose] [App] UseSettingsExperience registry key read failure: hr = 0x80070002
+06/29/2018 23:21:21  [Information] [WelcomePageViewModel] Authentication method reset to default: BuiltIn
+06/29/2018 23:21:21  [Verbose] [App] UseSettingsExperience registry key read failure: hr = 0x80070002
+06/29/2018 23:21:21  [Verbose] [WelcomePage] OnNavigatedTo
+06/29/2018 23:21:21  [Verbose] [App] UseSettingsExperience registry key read failure: hr = 0x80070002
+06/29/2018 23:21:21  [Verbose] [App] UseSettingsExperience registry key read failure: hr = 0x80070002
+06/29/2018 23:21:21  [Verbose] [WelcomePage] Page_Loaded
+06/29/2018 23:21:21  [Information] BackgroundProvisioner: Running forced provisioning.
+06/29/2018 23:21:21  [Information] BackgroundProvisioner: Nothing to be done.
+06/29/2018 23:21:23 ---Log Closed---
+06/29/2018 23:22:01 ---Log Reopened---
+06/29/2018 23:22:09  [Information] AboutPage
+06/29/2018 23:22:09  [Verbose] [AboutPage] OnNavigatedTo
+06/29/2018 23:22:09  [Verbose] [AboutPage] NavigationHelper_LoadState
+06/29/2018 23:22:09  [Verbose] [AboutPageViewModel] Initialize
+06/29/2018 23:22:09  [Information] [DeviceInformationAccess] Loading device information...
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Loading additional device information...
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Retrieval completion event fired.
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Retrieval is done.
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Checking if a DU session is in progress...
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Getting some final device information...
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Analyzing device update keys.
+06/29/2018 23:22:09  [Verbose] [DeviceInformationAccess] Retrieving device targeting keys.
+06/29/2018 23:22:09  [Information] [DeviceInformationAccess] Finished getting device information
+06/29/2018 23:22:09  [Information] [AboutPageViewModel] Current Flight Name = Not Set
+06/29/2018 23:22:09  [Warning] [DeviceInformationAccess] Cannot find the FlightingService keys.
+06/29/2018 23:22:09  [Verbose] [AboutPageViewModel] Initialize done
+06/29/2018 23:22:12  [Verbose] [AboutPage] OnEmailClicked
+06/29/2018 23:22:12 ---Log Closed---
