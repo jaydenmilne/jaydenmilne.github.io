@@ -6,13 +6,13 @@ categories: windowsphone
 ---
 
 ## Background
-So, I was perusing eBay one day when I [found this guy selling Lumia 435s for $18(!!)](https://www.ebay.com/itm/Microsoft-Lumia-435-Nokia-8GB-White-T-Mobile-Clean-IMEI-Excellent-Cond-0017/). 
+So, I was on eBay one day when I [found this guy selling Lumia 435s for $18(!!)](https://www.ebay.com/itm/Microsoft-Lumia-435-Nokia-8GB-White-T-Mobile-Clean-IMEI-Excellent-Cond-0017/). 
 So, after checking to make sure that the Lumia 435 is on the 
 [official Windows 10 upgrade list](https://www.microsoft.com/en-us/windows/windows-10-mobile-upgrade), 
-I bought one and immediately loaded installed the Upgrade Advisor
+I bought one and tried to update it to Windows 10.
 
 ### Just Checking For Updates
-So, I fire up my shiny refurbished 435 and check for updates:
+So, I fire up my new 435 and check for updates:
 
 <img src="/assets/posts/2018-06-29-windows-10-lumia-435-tmobile/update-1.jpg" height="30%" width="30%" alt="No updates are available???">
 
@@ -20,22 +20,21 @@ Nothing, even though it should upgrade to Windows 10. Odd
 
 ### Upgrade "Assistant"
 After some googling I found out you need to install an app to enable the update. 
-OK then. I saw it had a two star rating from plebs who were mad they couldn't upgrade.
-I scoffed at them as I installed it. "My phone is _officially supported_ by Microsoft"!
+OK then. I saw it had a two star rating from people who were mad they couldn't upgrade.
+I though I was OK though, since my phone is _officially supported_ by Microsoft!
 
 <img src="/assets/posts/2018-06-29-windows-10-lumia-435-tmobile/upgrade-advisor-1.jpg" height="30%" width="30%" alt="Come on baby daddy wants Windows 10...">
 <img src="/assets/posts/2018-06-29-windows-10-lumia-435-tmobile/upgrade-advisor-2.jpg" height="30%" width="30%" alt="And the Upgrade Advisor earns it's two star rating">
 
-Oh.
+Burned by M$FT
 
 ### Windows Insider Program
-After recovering from the shock of being lied to from Microsoft about a Windows 10
- Mobile upgrade, I thought I'd try the Windows Insider program to get my Windows 10 fix.
+I tried the Windows Insider program to get Windows 10 too.
 
 <img src="/assets/posts/2018-06-29-windows-10-lumia-435-tmobile/insider-1.jpg" height="30%" width="30%" alt="Come on baby daddy wants Windows 10...">
 <img src="/assets/posts/2018-06-29-windows-10-lumia-435-tmobile/insider-2.jpg" height="30%" width="30%" alt="And the Upgrade Advisor earns it's two star rating">
 
-But to my angst the insider app would pop up this error message:
+Unfortunantly the insider app would pop up this error message:
  
 > Server Error
 > 
@@ -52,7 +51,7 @@ Would I be stuck in the forgotten Windows Phone 8.1 wasteland? Would I be out $1
 
 ## The not-so-official way: hikari_calyx
 
-All hail hikari_calyx. Seriously. I had searched and searched for a way to force
+I searched for too long for a way to force
 a T-Mobile Lumia 435 to upgrade to Windows 10 and found nothing, since it seems
 most tech-savvy people bought the unlocked version. Eventually, by accident, [I was
 linked to a post by one hikari_calyx](https://forum.xda-developers.com/windows-10-mobile/guide-win10-mobile-offline-update-t3527340) 
@@ -79,8 +78,7 @@ fine.
  ```
 __ALL CREDIT GOES TO [hikari_calyx](https://forum.xda-developers.com/windows-10-mobile/guide-win10-mobile-offline-update-t3527340)__
 
-1. This procedure might wipe your phone. Please copy off the precious, irreplacable
-   pictures of your LARPing squad on your most epic day. For best results factory
+1. This procedure might wipe your phone, so copy your crap off. For best results factory
    reset it before starting. At least remove your PIN though.
 2. Install the [Windows Device Recovery Tool](https://support.microsoft.com/en-us/help/12379/windows-10-mobile-device-recovery-tool-faq)
     
