@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>
+            Context Free Language to Chomsky Normal Form Calculator
+        </title>
+        <link rel="stylesheet" type="text/css" href="algorithm.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, user-scalable=yes" />
+        <meta charset="utf-8"/> 
+    </head>
+    <body>
+        <h2>
+                Context Free Language to Chomsky Normal Form Calculator
+        </h2>
+        This calculator was created from the construction given in <b>Theorem 2.9</b> (page 109) of <i>Introduction to the Theory of Computation</i> by Michael Sipster.
+        It converts a given context free language to an equivalent language in Chomsky normal form.
+        <h3>
+            Input a context free language
+        </h3>
+        <p>Uppercase letters are assumed to be variables/non-terminals, lowercase are terminals.</p>
+        <p>Here is epsilon: ε</p>
+        <div>
+            <textarea id="language-input"
+                      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+S -> AB
+A -> B
+B -> aBb | ε
+</textarea>
+        </div>
+        <div>
+            <button id="calculate-button">Calculate</button> 
+        </div>
+        <div id="results">
+        </div>
+        <script src="chomsky.js"></script> 
+    </body>
+</html>
