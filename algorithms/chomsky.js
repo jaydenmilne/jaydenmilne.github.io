@@ -9,7 +9,7 @@ function append_span(text, span) {
 }
 
 function is_uppercase(str) { 
-    return (str == str.toUpperCase() && str[0] < 'Z' && str[0] > 'A'); 
+    return (str == str.toUpperCase() && str[0] <= 'Z' && str[0] >= 'A'); 
 } 
 
 function write_section(title_text, new_grammar, old_grammar) {
