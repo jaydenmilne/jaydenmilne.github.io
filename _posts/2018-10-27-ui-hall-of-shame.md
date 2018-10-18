@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "UI Hall of Shame: MathXL.com (MyMathLab/Pearson)"
+title:  "UI Hall of Shame: MyMathLab"
 date:   2018-10-17 17:46
 categories: bad-ui
 ---
-Just wanted to gripe about the amazingly poor UI this online learning system has.
+Just wanted to gripe about the amazingly poor UI MyMathLab, (aka MathXL, a Pearson product) an online learning system, has.
 
 So, you want to insert a matrix into the answer field.
 
@@ -27,6 +27,8 @@ Oh wait, despite that looking deceptively like a text field, and the cursor indi
 <img src="/assets/posts/2018-10-27-ui-hall-of-shame/dialog-3.gif" alt="STAY WHERE YOU ARE" height="50%" width="50%">
 
 Ahh, MyMathLab follows the "move buttons away from under the user's mouse" school of UX design. This is especially infuriating because you are forced to use those arrows and you have to do that slow little dance every time.
+
+The adventerous user will discover that the arrow keys can adjust the size, but this is negated by the fact that you can't tab between the two input fields. Break out that mouse again!
 
 So, we finally have the right sized matrix, lets fill in some values
 
