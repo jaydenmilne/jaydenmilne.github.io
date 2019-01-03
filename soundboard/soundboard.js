@@ -5,18 +5,20 @@ var sounds = [
     { fl:"cantplace.mp3", nm:"Can't place that there!"},
     { fl: "lionroars.mp3", nm:"Lionheart: Lion Roars"},
     { fl: "moreworkers.mp3", nm:"More Workers Needed"},
-    { fl: "flyingpoo.mp3", nm:"Flying Poo"},
-    { fl: "Peasant_Female73.mp3", nm:"Pop Rising"},
+	{ fl: "wood_stocks_low.mp3", nm:"Wood Stocks are Too Low"},
+	{ fl: "Peasant_Female73.mp3", nm:"Pop Rising"},
     { fl: "Pop_Falling.mp3", nm:"Popularity is Falling"},
     { fl: "stockpile_full.mp3", nm:"The Stockpile is Full!"},
+    { fl: "flyingpoo.mp3", nm:"Flying Poo"},
+	{ fl: "legospy.mp3", nm:"Lego Star Wars Spy"},
     { fl: "woodneeded2.mp3", nm:"Wood Needed 2"},
     { fl: "donthurtme.mp3", nm:"Rat: Don't Hurt Me"},
     { fl: "megadeath.mp3", nm:"Mega Death"},
     { fl: "fatalexception.mp3", nm:"A Fatal Exception"},
     { fl: "lordjeff.mp3", nm:"Lord Jeff"},
     { fl: "lordrobert.mp3", nm:"Lord Robert"},
-    { fl: "vader.mp3", nm:"Lord Vader"},
-    { fl: "wood_stocks_low.mp3", nm:"Wood Stocks are Too Low"}]
+    { fl: "vader.mp3", nm:"Lord Vader"}
+    ]
 
 function add_button(snd) {
     var button = document.createElement("button");
