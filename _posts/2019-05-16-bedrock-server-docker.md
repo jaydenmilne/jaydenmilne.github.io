@@ -6,16 +6,18 @@ categories: docker, minecraft
 ---
 
 ## The Problem
-You have an Ubuntu 16.04 server you really don't want to upgrade, but want to 
+You have an Ubuntu 16.04 server or some other distro on your server
+ and you really don't want to change it, but want to 
 run the [Minecraft bedrock server](https://www.minecraft.net/en-us/download/server/bedrock/)
-on, but when you try and start it you get the following error:
+. When you try and start it you get the following error:
 
 ```
 ./bedrock_server: error while loading shared libraries: libssl.so.1.1: cannot open shared object file: No such file or directory
 ```
 ## The Cause
 Apparently, Mojang is not compiling the server with support for Ubuntu 16.04,
-and since it depends on a higher glibc version, it's never going to run.
+and since it depends on a higher glibc version, it's never going to run. It also
+won't run on other distros, like Alpine Linux or CentOS.
 
 ## The Solution
 Run the server with [the following `Dockerfile`](https://gist.github.com/jaydenmilne/cb3cb0502c4797d620cb598c9a8e702a):
