@@ -2,7 +2,7 @@
 layout: post
 title:  "How to use Docker to run the Bedrock Minecraft server on Ubuntu 16.04"
 date:   2019-05-16 17:18
-categories: docker, minecraft
+categories: docker minecraft
 ---
 
 ## The Problem
