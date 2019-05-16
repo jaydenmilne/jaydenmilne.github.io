@@ -79,6 +79,10 @@ quick overview of what you'll have to do.
    [2019-05-16 23:19:42 INFO] IPv6 not supported
    [2019-05-16 23:19:45 INFO] Server started.
    ```
+
+   Kill it by running `docker ps` and noting the value under `NAMES` (should be
+   a name like `thirsty_kapista`, see step 11 for example output), then running
+   `docker stop {name}`. It will take a few seconds to stop.
 9. Run `docker volume create bedrock-world`
 
    A docker volume is where your world will be persisted between `docker run`'s
