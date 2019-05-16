@@ -14,6 +14,11 @@ run the [Minecraft bedrock server](https://www.minecraft.net/en-us/download/serv
 ```
 ./bedrock_server: error while loading shared libraries: libssl.so.1.1: cannot open shared object file: No such file or directory
 ```
+or 
+```
+./bedrock_server: error while loading shared libraries: libcurl.so.4: cannot open shared object file: No such file or directory
+```
+
 ## The Cause
 Apparently, Mojang is not compiling the server with support for Ubuntu 16.04,
 and since it depends on a higher glibc version, it's never going to run. It also
