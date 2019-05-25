@@ -70,7 +70,7 @@ quick overview of what you'll have to do.
    Successfully built 2b0e01bb18ac
    Successfully tagged mojang/bedrock:latest
    ```
-8. Run `docker run mojang/bedrock` and ensure the server starts
+8. Run `docker run mojang/bedrock .` and ensure the server starts
 
    ```
    $ docker run mojang/bedrock
