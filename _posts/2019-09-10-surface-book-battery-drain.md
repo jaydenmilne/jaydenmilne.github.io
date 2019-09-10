@@ -31,7 +31,7 @@ Scroll down and try and find the section that has the worst drain:
 
 Click on that row of the table. Find the red box and drill down until you find a culprit
 
-<img src="/assets/posts/2019-09-10-surface-book-battery-drain/drill-down.png" width="50%" height="50%" alt="Section with 82% battery usage">
+<img src="/assets/posts/2019-09-10-surface-book-battery-drain/drill-down.png" width="75%" height="75%" alt="Section with 82% battery usage">
 
 ## The problem, in my case
 
