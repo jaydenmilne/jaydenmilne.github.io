@@ -32,7 +32,7 @@ makes it more impressive since the editor must've been fairly old.
 I access the textbook through WebAssign. Quick, tell me what you think the two
 buttons below do:
 
-<img src="/assets/posts/2019-09-10-surface-book-battery-drain/toc.png">
+<img src="/assets/posts/2020-02-06-ui-hall-of-shame-webassign/toc.png">
 
 If your answer was that `1` brings you to the chapter table of contents, and `2`
 brings you to the table of contents for the entire book, you must work for
@@ -43,12 +43,12 @@ They've also added this nice sidebar on the left hand of the screen, whose
 primary purpose seems to be to take up screen real-estate when I have two
 windows side by side, like when, I don't know, I'm doing homework.
 
-<img src="/assets/posts/2019-09-10-surface-book-battery-drain/sidebar-1.png">
+<img src="/assets/posts/2020-02-06-ui-hall-of-shame-webassign/sidebar-1.png">
 
 This is an example of having icons for the sake of having icons, since I have
 no idea what any of these do. Let's expand it to see what they are.
 
-<img src="/assets/posts/2019-09-10-surface-book-battery-drain/sidebar-2.png">
+<img src="/assets/posts/2020-02-06-ui-hall-of-shame-webassign/sidebar-2.png">
 
 Ah, mostly trying to sell me some "value added" stuff of questionable value.
 Glad that sidebars there now.
@@ -58,7 +58,7 @@ Glad that sidebars there now.
 Let's add a new ublock origin rule for that sidebar and move on to actually 
 trying to read the textbook. 
 
-<img src="/assets/posts/2019-09-10-surface-book-battery-drain/table-1.png">
+<img src="/assets/posts/2020-02-06-ui-hall-of-shame-webassign/table-1.png">
 
 Let's follow that link to Table 1. After all, one of the principal advantages of
 ebooks is the ease of following links around without having to flip pages back
@@ -84,7 +84,7 @@ To recap:
 
 Oh, and you can't make that sidebar wider for some reason. Wonderful!
 
-<img src="/assets/posts/2019-09-10-surface-book-battery-drain/expand.gif">
+<img src="/assets/posts/2020-02-06-ui-hall-of-shame-webassign/expand.gif">
 
 When I click on it it just makes this weird dotted line thing appear next to it
 that does nothing.
