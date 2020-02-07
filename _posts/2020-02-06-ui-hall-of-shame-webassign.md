@@ -48,7 +48,7 @@ windows side by side, like when, I don't know, I'm doing homework.
 This is an example of having icons for the sake of having icons, since I have
 no idea what any of these do. Let's expand it to see what they are.
 
-<img src="/assets/posts/2020-02-06-ui-hall-of-shame-webassign/sidebar-2.png">
+<img height="20%" width="20%" src="/assets/posts/2020-02-06-ui-hall-of-shame-webassign/sidebar-2.png">
 
 Ah, mostly trying to sell me some "value added" stuff of questionable value.
 Glad that sidebars there now.
@@ -84,7 +84,7 @@ To recap:
 
 Oh, and you can't make that sidebar wider for some reason. Wonderful!
 
-<img src="/assets/posts/2020-02-06-ui-hall-of-shame-webassign/expand.gif">
+<img height="20%" width="20%" src="/assets/posts/2020-02-06-ui-hall-of-shame-webassign/expand.gif">
 
 When I click on it it just makes this weird dotted line thing appear next to it
 that does nothing.
