@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Search Algorithms</title>
+        <link rel="stylesheet" type="text/css" href="search.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="controls">
+                <div id="title-run-box">
+                    <h2 id="title">SEARCH ALGORITHMS</h2>
+                    <button id="run-button">Run</button>    
+                    <button id="reset-button">Reset</button>
+                </div>
+                
+                <div class="controls-box">
+                    <div>
+                        <input type="radio" id="cell-type-fixed" name="cell-type" value="fixed" checked>
+                        <label for="cell-type-fixed">Fixed Cell Size
+                            <select id="cell-size-select">
+                                <option value="5">5px</option>
+                                <option value="10">10px</option>
+                                <option value="20" selected>20px</option>
+                                <option value="50">50px</option>
+                            </select>
+                        </label>
+                    </div>
+    
+                    <div>
+                        <input type="radio" id="cell-type-fixed-grid" name="cell-type" value="fixed-grid">
+                        <label for="cell-type-fixed-grid">Fixed Grid Size
+                            <input id="grid-size-box" type="text" value="50,50">
+                        </label>
+                    </div>
+    
+                    <button id="clear-button">Clear Grid</button>
+                </div>
+                <div class="controls-box">
+                    <label for="algorithm-select">Algorithm</label>
+                    <select id="algorithm-select">
+                        <option value="dfs" selected>Depth First</option>
+                        <option value="ids" selected>Iterative Deepening</option>
+                        <option value="bfs">Breadth First</option>
+                        <option value="a*" >A*</option>
+                    </select>
+                    <br>
+                    <label for="heuristic-select">Heuristic</label>
+                    <select id="heuristic-select">
+                        <option value="md">Manhattan Distance</option>
+                        <option value="ed" selected>Euclidian Distance</option>
+                        <option value="null">Null Heuristic</option>
+                    </select>
+                    <br>
+                    <label for="connected-8-checkbox">8-connected</label>
+                    <input type="checkbox" id="connected-8-checkbox">
+                </div>
+            </div>
+
+            <div id="grid-div">
+                <canvas id="grid"></canvas>
+            </div>    
+        </div>
+        <script src="grid.js"></script>
+        <script src="search.js"></script>
+
+    </body>
+</html>
