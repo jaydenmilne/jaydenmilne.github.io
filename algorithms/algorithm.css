@@ -20,12 +20,16 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-#matrix-input {
+#matrix-input, #heuristic-input {
     height : 10em;
     width : 10em;
 }
 
-#language-input {
+#language-input, #edges-input {
     height : 10em;
     width : 20em;
+}
+
+#heuristic {
+    display: none;
 }
