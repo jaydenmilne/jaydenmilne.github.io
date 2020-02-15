@@ -12,6 +12,7 @@ const GRID_START_COLOR = '#BB86FC';
 const GRID_FRONTIER_COLOR = "#03DAC6";
 const GRID_PATH_COLOR = "#CF6679";
 const GRID_EXPLORED_COLOR = "#000000";
+const PAGE_BACKROUND_COLOR = "#121212";
 
 const canvas = document.getElementById('grid');
 const ctx = canvas.getContext('2d');
@@ -22,8 +23,19 @@ const fixed_cell_radio   = document.getElementById("cell-type-fixed");
 const grid_size_box      = document.getElementById("grid-size-box");
 const reset_button       = document.getElementById("reset-button");
 
-// used to keep track of if the mouse is down or not
+class Cell {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+/* Mouse/Touch Event Tracking */
+// used to keep track of if the mouse is down or not. Either a bool or a touch
+// event ID
 let down = false;
+// used to interpolate between touch/mouse events
+let last_sample = new Cell(-1,-1);
 
 // used to keep track if we are clearing or setting walls
 let clearing = false;
@@ -88,16 +100,21 @@ function init_canvas(c, ctx) {
 
         // find the smaller dimension, we will make at least that dimension
         // is full
+        // TODO: this is broken
         if (grid_info.cells_x > grid_info.cells_y) {
             grid_info.cell_size = Math.floor(c.width / grid_info.cells_x);
-            // TODO: fix coloring off the non-clickable parts of the grid
-            ctx.fillRect(0, grid_info.cells_y * grid_info.cell_size,c.width, 5);
         } else {
             grid_info.cell_size = Math.floor(c.height / grid_info.cells_y);
-            ctx.fillRect(grid_info.cells_x * grid_info.cell_size, 0, c.height, 5);
         }
-
     }
+
+    // color in the parts of the canvas that aren't part of the grid the
+    // background color so that the user can tell where they can't draw
+    ctx.fillStyle = PAGE_BACKROUND_COLOR;
+    let cutoff_y = grid_info.cells_y * grid_info.cell_size;
+    let cutoff_x = grid_info.cells_x * grid_info.cell_size;
+    ctx.fillRect(0, cutoff_y, c.width, c.height - cutoff_y);
+    ctx.fillRect(cutoff_x, 0, c.width - cutoff_x, c.height);
 
     // create the logical representation of the grid space
     grid = Array.from(Array(grid_info.cells_y), () => {
@@ -109,7 +126,7 @@ function init_canvas(c, ctx) {
     start_cell = goal_cell = null;
 }
 
-function update_cell(cell, state) {
+function update_cell(cell, state, paint=true) {
     // don't update a grid cell that doesn't exist
     if (cell.x >= grid_info.cells_x || cell.y >= grid_info.cells_y) return;
 
@@ -154,17 +171,21 @@ function update_cell(cell, state) {
         default:
             alert("unkown state " + state); 
     }
-    ctx.fillStyle = color;
+    
+    if (paint) {
+        ctx.fillStyle = color;
 
-    ctx.fillRect(
-        cell.x * grid_info.cell_size, 
-        cell.y * grid_info.cell_size, 
-        grid_info.cell_size, 
-        grid_info.cell_size
-    );
+        ctx.fillRect(
+            cell.x * grid_info.cell_size, 
+            cell.y * grid_info.cell_size, 
+            grid_info.cell_size, 
+            grid_info.cell_size
+        );
+    }
 }
 
 function getMousePos(evt) {
+    // Pass in a MouseEvent or a Touch
     var rect = canvas.getBoundingClientRect();
     return {
         x: (evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
@@ -172,7 +193,8 @@ function getMousePos(evt) {
     };
 }
 
-function event_to_logical_xy(event) {
+function get_cell_from_selection(event) {
+    // Pass in a MouseEvent or a Touch
     var pos = getMousePos(event);
 
     let x = Math.floor(pos.x / grid_info.cell_size);
@@ -180,13 +202,13 @@ function event_to_logical_xy(event) {
 
     if (x == undefined || y == undefined) alert("oops!");
 
-    return {"x":x, "y":y};
+    return new Cell(x,y);
 }
 
-canvas.addEventListener('mousedown', (event) => {
+function mousedown_begin(event) {
     let state = GRID_EMPTY;
-    let cell = event_to_logical_xy(event);
-
+    let cell = get_cell_from_selection(event);
+    last_sample = cell;
     if (event.button != 0) {
         // right or middle click. place start or goal state
         down = false;
@@ -209,29 +231,81 @@ canvas.addEventListener('mousedown', (event) => {
 
     // update the current cell
     update_cell(cell, state);
-});
+}
 
-canvas.addEventListener('mouseup', (event) => {
+function touch_begin(event) {
+    event.preventDefault();
+    // we only care about the first touch
+    let touch = event.targetTouches.item(0);
+    let cell = get_cell_from_selection(touch);
+    let state = GRID_EMPTY;
+    down = touch.identifier;
+    last_sample = cell;
+
+    // decide if we are setting or clearing a cell
+    if (grid[cell.y][cell.x] != GRID_EMPTY) {
+        clearing = true;
+        state = GRID_EMPTY;
+    } else {
+        clearing = false;
+        state = GRID_WALL;
+    }
+
+    // update the current cell
+    update_cell(cell, state);
+
+    // set a timeout for 1 second to see if they are pressing and holding.
+    // if the touch event is still going 1s later and hasn't move, place a goal
+    // or end cell
+    setTimeout(() => {
+        if (down !== false && last_sample.x == cell.x && last_sample.y == cell.y) {
+            // selection hasn't moved. 
+            // right or middle click. place start or goal state
+            down = false;
+
+            state = place_goal ? GRID_GOAL : GRID_START;
+            place_goal = !place_goal;
+            update_cell(cell, state);
+            
+        }
+    }, 1000)
+}
+
+function selection_end(event) {
     down = false;
-});
+}
 
-canvas.addEventListener('mousemove', (event) => {
-    if (down) {
-        let cell = event_to_logical_xy(event);
+function selection_move(event) {
+    if (down !== false) {
+        let cell = get_cell_from_selection(event);
+        last_sample = cell;
         update_cell(cell, clearing ? GRID_EMPTY : GRID_WALL);
     }
+}
+
+// Register mouse events 
+canvas.addEventListener('mousedown', mousedown_begin);
+canvas.addEventListener('mouseup', selection_end);
+canvas.addEventListener('mousemove', selection_move);
+canvas.addEventListener('mouseleave', selection_end);
+
+// Register touch events. 
+// Arrow functions massage the TouchEvent a little and forward to mouse event
+canvas.addEventListener('touchstart', touch_begin);
+
+canvas.addEventListener('touchmove', (event) => {
+    event.preventDefault();
+
+    if (down === false) return;
+    let touch = event.changedTouches.item(down);
+    
+    if (!touch) return;
+
+    selection_move(touch);
 });
 
-canvas.addEventListener('mouseleave', (event) => {
-    down = false;
-})
-
-class Cell {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-}
+canvas.addEventListener('touchend', selection_end);
+canvas.addEventListener('touchcancel', selection_end);
 
 function reset_grid() {
     /**

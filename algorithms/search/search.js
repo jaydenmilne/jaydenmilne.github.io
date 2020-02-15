@@ -6,28 +6,32 @@ const heuristic_select = document.getElementById("heuristic-select");
 const connected_8 = document.getElementById("connected-8-checkbox");
 
 run_button.addEventListener("click", run);
-function recursive_dls(node, problem, limit) {
+
+function not_start_or_goal(node) {
+    return node.value != GRID_START && node.value != GRID_GOAL;
+}
+
+async function recursive_dls(node, problem, limit) {
     /**
-     * page 88
+     * Section 3.4.4, figure 3.17
      */
 
-    // Mark this one as being on the path
     if (problem.goal_test(node)){
         return node;
     }
 
-    if (node.value != GRID_START)
-        update_cell(node.cell, GRID_PATH);
-
     if (limit == 0) {
         return "cutoff";
     } else {
+        if (not_start_or_goal(node))
+            update_cell(node.cell, GRID_PATH);
+
         let cutoff_occured = false;
 
         let children = problem.actions_children(node, problem);
         for (let i = 0; i < children.length; ++i) {
             let child = children[i];
-            let result = recursive_dls(child, problem, limit-1);
+            let result = await recursive_dls(child, problem, limit-1);
             if (result == "cutoff") {
                 cutoff_occured = true;
             } else if (result != "failure") {
@@ -36,10 +40,11 @@ function recursive_dls(node, problem, limit) {
             }
         };
 
+        if (not_start_or_goal(node))
+            update_cell(node.cell, GRID_EMPTY);
         if (cutoff_occured) {
             return "cutoff";
         } else {
-            update_cell(node.cell, GRID_EXPLORED);
             return "failure";
         }
     }
@@ -47,14 +52,15 @@ function recursive_dls(node, problem, limit) {
 }
 
 class Node {
-    constructor(parent, x, y, value) {
+    constructor(parent, x, y, value, depth) {
         this.parent = parent;
         this.cell = {"x": x, "y": y};
         this.value = value;
+        this.depth = depth;
     }
 }
 
-function evaluate_and_add(children, i, j, problem, node) {
+function evaluate_and_add(children, i, j, problem, node, mark_frontier=false) {
     if (i < 0 || i >= problem.grid_info.cells_x) return;
     if (j < 0 || j >= problem.grid_info.cells_y) return;
     
@@ -62,9 +68,9 @@ function evaluate_and_add(children, i, j, problem, node) {
     
     if (value != GRID_EMPTY && value != GRID_GOAL) return;
 
-    let child = new Node(node, i, j, value);
+    let child = new Node(node, i, j, value, node.depth + 1);
 
-    if (value != GRID_START && value != GRID_GOAL)
+    if (value != GRID_START && value != GRID_GOAL && mark_frontier)
         update_cell(child.cell, GRID_FRONTIER);
 
     children.push(child)
@@ -101,15 +107,15 @@ function actions_children_8(node, problem) {
     return children;
 }
 
-function run_dfs(problem) {
-    recursive_dls(problem.root, problem, -1);
+async function run_dfs(problem) {
+    return recursive_dls(problem.root, problem, -1);
 }
 
-function run_ids(problem) {
+async function run_ids(problem) {
     let depth = 0;
     while (depth < 5000) {
-        let result = recursive_dls(problem.root, problem, depth);
-        if (result != "cutoff" || result != "failure") return;
+        let result = await recursive_dls(problem.root, problem, depth);
+        if (result != "cutoff") return result;
         reset_grid()
         depth++;
     }
@@ -117,15 +123,15 @@ function run_ids(problem) {
     return "failure";
 }
 
-function run_bfs(problem) {
+async function run_bfs(problem) {
 
 }
 
-function run_astar(problem) {
+async function run_astar(problem) {
 
 }
 
-function run() {
+async function run() {
     if (start_cell == null || goal_cell == null) {
         alert("You must specify a start and goal cell. \n\n" +
               "Right click to place a start cell (purple), then right click " +
@@ -135,7 +141,7 @@ function run() {
 
     reset_grid();
     let ac = connected_8.checked ? actions_children_8 : actions_children_4;
-    let root = new Node(null, start_cell.x, start_cell.y, GRID_START);
+    let root = new Node(null, start_cell.x, start_cell.y, GRID_START, 0);
 
     let problem = {
         "goal_test": (node) => {
@@ -147,21 +153,25 @@ function run() {
         "actions_children": ac
     }
 
+    let result = null;
+    let algo = null;
     switch (algorithm_select.value) {
         case "dfs":
-            run_dfs(problem);
+            algo = run_dfs;
             break;
         case "ids":
-            run_ids(problem);
+            algo = run_ids;
             break;
         case "bfs":
-            run_bfs(problem);
+            algo = run_bfs;
             break;
         case "a*":
-            run_astar(problem);
+            algo = run_astar;
             break;
         default:
             alert("unkown algorithm " + algorithm_select.value);
     }
+
+    result = await algo(problem)
 
 }
