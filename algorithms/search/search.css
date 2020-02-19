@@ -24,6 +24,14 @@ body {
     width: 50px;
 }
 
+#playback-btn {
+    display: inline-block
+}
+
+#slider {
+    width:100px;
+}
+
 #controls {
     display: flex;
     flex-flow: row;

@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta charset="utf-8"/>
         <title>Search Algorithms</title>
         <link rel="stylesheet" type="text/css" href="search.css">
 
@@ -11,7 +12,7 @@
             <div id="controls">
                 <div id="title-run-box">
                     <h2 id="title">SEARCH</h2>
-                    <button id="run-button">Run</button>    
+                    <button id="run-button" autofocus="true">Run</button>    
                     <button id="reset-button">Reset</button>
                 </div>
                 
@@ -56,14 +57,22 @@
                     <label for="connected-8-checkbox">8-connected</label>
                     <input type="checkbox" id="connected-8-checkbox">
                 </div>
+                <div class="controls-box">
+                    <label for="playback-speed">Playback Speed</label><br>
+                    🐢<input id="playback-speed" type="range" min="0" max="4" step="1" value="0">🐇<br>
+                    <button class="playback-btn" id="play-button" disabled="true">&#x23ef;&#xFE0E;</button>
+                    <button class="playback-btn" id="step-button" disabled="true">&#x23ED;&#xFE0E;</button>
+                    <button class="playback-btn" id="stop-button" disabled="true">&#x23f9;&#xFE0E;</button>
+                </div>
             </div>
 
             <div id="grid-div">
                 <canvas id="grid"></canvas>
             </div>    
         </div>
+        <script src="datastructures.js"></script>
         <script src="grid.js"></script>
+        <script src="playback.js"></script>
         <script src="search.js"></script>
-
     </body>
 </html>

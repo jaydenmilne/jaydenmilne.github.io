@@ -18,10 +18,10 @@ const canvas = document.getElementById('grid');
 const ctx = canvas.getContext('2d');
 
 const grid_size_dropdown = document.getElementById("cell-size-select");
-const clear_button       = document.getElementById("clear-button");
-const fixed_cell_radio   = document.getElementById("cell-type-fixed");
-const grid_size_box      = document.getElementById("grid-size-box");
-const reset_button       = document.getElementById("reset-button");
+const clear_button = document.getElementById("clear-button");
+const fixed_cell_radio = document.getElementById("cell-type-fixed");
+const grid_size_box = document.getElementById("grid-size-box");
+const reset_button = document.getElementById("reset-button");
 
 class Cell {
     constructor(x, y) {
@@ -126,26 +126,7 @@ function init_canvas(c, ctx) {
     start_cell = goal_cell = null;
 }
 
-function update_cell(cell, state, paint=true) {
-    // don't update a grid cell that doesn't exist
-    if (cell.x >= grid_info.cells_x || cell.y >= grid_info.cells_y) return;
-
-
-    // there can only be one start or end cell
-    if (state == GRID_START) {
-        if (start_cell) update_cell(start_cell, GRID_EMPTY);
-        start_cell = cell;
-    }
-
-    if (state == GRID_GOAL) {
-        if (goal_cell) update_cell(goal_cell, GRID_EMPTY);
-        goal_cell = cell;
-    }
-
-    // update the logical cell x, y to the new state and re-draw the cell
-    grid[cell.y][cell.x] = state;
-
-
+function paint_cell(cell, state) {
     let color = GRID_BACK_COLOR;
     switch (state) {
         case GRID_EMPTY:
@@ -172,16 +153,36 @@ function update_cell(cell, state, paint=true) {
             alert("unkown state " + state); 
     }
     
-    if (paint) {
-        ctx.fillStyle = color;
+    ctx.fillStyle = color;
 
-        ctx.fillRect(
-            cell.x * grid_info.cell_size, 
-            cell.y * grid_info.cell_size, 
-            grid_info.cell_size, 
-            grid_info.cell_size
-        );
+    ctx.fillRect(
+        cell.x * grid_info.cell_size, 
+        cell.y * grid_info.cell_size, 
+        grid_info.cell_size, 
+        grid_info.cell_size
+    );
+}
+
+function update_cell(cell, state, paint=true) {
+    // don't update a grid cell that doesn't exist
+    if (cell.x >= grid_info.cells_x || cell.y >= grid_info.cells_y) return;
+
+    // there can only be one start or end cell
+    if (state == GRID_START) {
+        if (start_cell) update_cell(start_cell, GRID_EMPTY);
+        start_cell = cell;
     }
+
+    if (state == GRID_GOAL) {
+        if (goal_cell) update_cell(goal_cell, GRID_EMPTY);
+        goal_cell = cell;
+    }
+
+    // update the logical cell x, y to the new state and re-draw the cell
+    grid[cell.y][cell.x] = state;
+
+    if (paint) paint_cell(cell, state);
+    
 }
 
 function getMousePos(evt) {
@@ -307,7 +308,7 @@ canvas.addEventListener('touchmove', (event) => {
 canvas.addEventListener('touchend', selection_end);
 canvas.addEventListener('touchcancel', selection_end);
 
-function reset_grid() {
+function reset_grid(paint=true) {
     /**
      * Reset the non-wall values
      */
@@ -316,7 +317,7 @@ function reset_grid() {
     for (let j = 0; j < grid_info.cells_y; ++j) {
         for (let i = 0; i < grid_info.cells_x; ++i) {
             if (!whitelist.includes(grid[j][i])) {
-                update_cell(new Cell(i, j), GRID_EMPTY);
+                update_cell(new Cell(i, j), GRID_EMPTY, paint);
             }
         }
     }

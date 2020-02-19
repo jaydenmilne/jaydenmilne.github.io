@@ -11,6 +11,11 @@ function not_start_or_goal(node) {
     return node.value != GRID_START && node.value != GRID_GOAL;
 }
 
+function update_and_record(cell, state, category) {
+    record(cell, state, category);
+    update_cell(cell, state, false);
+}
+
 async function recursive_dls(node, problem, limit) {
     /**
      * Section 3.4.4, figure 3.17
@@ -23,8 +28,9 @@ async function recursive_dls(node, problem, limit) {
     if (limit == 0) {
         return "cutoff";
     } else {
-        if (not_start_or_goal(node))
-            update_cell(node.cell, GRID_PATH);
+        if (not_start_or_goal(node)) {
+           update_and_record(node.cell, GRID_PATH);
+        }
 
         let cutoff_occured = false;
 
@@ -40,8 +46,9 @@ async function recursive_dls(node, problem, limit) {
             }
         };
 
-        if (not_start_or_goal(node))
-            update_cell(node.cell, GRID_EMPTY);
+        if (not_start_or_goal(node)) {
+           update_and_record(node.cell, GRID_EMPTY);
+        }
         if (cutoff_occured) {
             return "cutoff";
         } else {
@@ -66,23 +73,24 @@ function evaluate_and_add(children, i, j, problem, node, mark_frontier=false) {
     
     let value = problem.grid[j][i];
     
-    if (value != GRID_EMPTY && value != GRID_GOAL) return;
+    if (value == GRID_WALL || value == GRID_START || value == GRID_PATH) return;
 
     let child = new Node(node, i, j, value, node.depth + 1);
 
-    if (value != GRID_START && value != GRID_GOAL && mark_frontier)
-        update_cell(child.cell, GRID_FRONTIER);
+    if (value != GRID_START && value != GRID_GOAL && mark_frontier) {
+       update_and_record(child.cell, GRID_FRONTIER);
+    }
 
     children.push(child)
 }
 
-function actions_children_4(node, problem) {
+function actions_children_4(node, problem, mark_frontier=false) {
     let children = Array();
     let cell = node.cell
-    evaluate_and_add(children, cell.x, cell.y + 1, problem, node); // down
-    evaluate_and_add(children, cell.x + 1, cell.y, problem, node); // right
-    evaluate_and_add(children, cell.x - 1, cell.y, problem, node); // left
-    evaluate_and_add(children, cell.x, cell.y - 1, problem, node); // up
+    evaluate_and_add(children, cell.x, cell.y + 1, problem, node, mark_frontier); // down
+    evaluate_and_add(children, cell.x + 1, cell.y, problem, node, mark_frontier); // right
+    evaluate_and_add(children, cell.x - 1, cell.y, problem, node, mark_frontier); // left
+    evaluate_and_add(children, cell.x, cell.y - 1, problem, node, mark_frontier); // up
 
     return children;
 }
@@ -116,7 +124,10 @@ async function run_ids(problem) {
     while (depth < 5000) {
         let result = await recursive_dls(problem.root, problem, depth);
         if (result != "cutoff") return result;
-        reset_grid()
+
+        reset_grid(false);  // don't repaint grid
+        record_reset();
+
         depth++;
     }
     console.log(depth)
@@ -134,12 +145,15 @@ async function run_astar(problem) {
 async function run() {
     if (start_cell == null || goal_cell == null) {
         alert("You must specify a start and goal cell. \n\n" +
-              "Right click to place a start cell (purple), then right click " +
-              "again somewhere else to place the goal cell (gold).");
+              "Right click (or tap and hold) to place a start cell (purple), " +
+              "then right click (or tap and hold) again somewhere else to " +
+              "place the goal cell (gold).");
         return;
     }
 
     reset_grid();
+    reset_recording();
+
     let ac = connected_8.checked ? actions_children_8 : actions_children_4;
     let root = new Node(null, start_cell.x, start_cell.y, GRID_START, 0);
 
@@ -172,6 +186,7 @@ async function run() {
             alert("unkown algorithm " + algorithm_select.value);
     }
 
-    result = await algo(problem)
-
+    result = await algo(problem);
+    end_recording();
+    play_pause_button();  // start the playback
 }
