@@ -52,6 +52,22 @@ body {
     visibility: hidden;
 }
 
+.table-label {
+/*    font-weight: bold;*/
+    text-align: right;
+}
+
+@font-face {
+    font-family: ubuntumono;
+    src: url(assets/UbuntuMono-Regular.ttf);
+  }
+
+.results {
+    font-family: ubuntumono;
+    font-size: 14pt;
+    min-width: 110px;
+}
+
 /*
 #title-run-box {
     display: flex;

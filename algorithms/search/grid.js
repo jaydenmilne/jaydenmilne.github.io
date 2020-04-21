@@ -8,10 +8,10 @@
 const GRID_BACK_COLOR = '#292929';
 const GRID_WALL_COLOR = 'white';
 const GRID_GOAL_COLOR = '#FFDE03';
-const GRID_START_COLOR = '#BB86FC';
-const GRID_FRONTIER_COLOR = "#03DAC6";
+const GRID_START_COLOR = '#03DAC6';
+const GRID_FRONTIER_COLOR = "#BB86FC";
 const GRID_PATH_COLOR = "#CF6679";
-const GRID_EXPLORED_COLOR = "#000000";
+const GRID_EXPLORED_COLOR = "#23036A";
 const PAGE_BACKROUND_COLOR = "#121212";
 
 const canvas = document.getElementById('grid');
@@ -44,6 +44,8 @@ let clearing = false;
 let place_goal = false;
 
 clear_button.addEventListener("click", function() {
+    enable_playback();
+    disable_playback();
     init_canvas(canvas, ctx);
 });
 
@@ -70,6 +72,13 @@ const GRID_GOAL = 3;
 const GRID_PATH = 4;
 const GRID_FRONTIER = 5;
 const GRID_EXPLORED = 6;
+
+/**
+ * Get the current goal cell (to avoid hardcoding a cross-file global)
+ */
+function get_goal_cell() {
+    return goal_cell;
+}
 
 function init_canvas(c, ctx) {
     c.width = c.clientWidth;
@@ -308,10 +317,15 @@ canvas.addEventListener('touchmove', (event) => {
 canvas.addEventListener('touchend', selection_end);
 canvas.addEventListener('touchcancel', selection_end);
 
-function reset_grid(paint=true) {
+function reset_grid(paint=true, toggle_grid=true) {
     /**
      * Reset the non-wall values
      */
+    if (toggle_grid) {  // otherwise IDS breaks
+        enable_playback();
+        disable_playback();    
+    }
+    
     let whitelist = [GRID_WALL, GRID_GOAL, GRID_START];
 
     for (let j = 0; j < grid_info.cells_y; ++j) {

@@ -9,7 +9,8 @@
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "file:///C:/Users/jayde/Documents/GitHub/jaydenmilne.github.io/algorithms/search/index.html",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "args": ["enable-precise-memory-info"]
         }
     ]
 }

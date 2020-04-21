@@ -1,7 +1,6 @@
 "use strict";
 
 const play_button = document.getElementById("play-button");
-const stop_button = document.getElementById("stop-button");
 const step_button = document.getElementById("step-button");
 const playback_speed = document.getElementById("playback-speed");
 
@@ -9,40 +8,14 @@ const RECORD_RESET = 0;
 const RECORD_FRONTIER = 1;
 const RECORD_PATH = 2;
 
+// How often, when blocking as little as possible, to wait 1ms to allow the page
+// event loop to catch up (not block the browser)
+const BREAK_INTERVAL = 100;
+
 let playing = false;
 let next_to_draw = null;
 let timeout = null;
-
-class RecLink {
-    constructor(cell, state, category) {
-        this.cell = cell;
-        this.state = state;
-        this.category = category;
-        this.next = null;
-    }
-}
-
-let history = null;
-
-function reset_recording() {
-    play_button.disabled = true;
-    step_button.disabled = true;
-    stop_button.disabled = true;
-    playing = false;
-    
-    history = new SinglyLinkedList()
-    history.append(new RecLink(RECORD_RESET, RECORD_RESET, RECORD_RESET));
-}
-
-function record(cell, state, category) {
-    history.append(new RecLink(cell, state, category));
-}
-
-function record_reset() {
-    // link in this special node so that we know we have to reset the state
-    // of the grid
-    history.append(new RecLink(RECORD_RESET, RECORD_RESET, RECORD_RESET));
-}
+let seed = Math.random();
 
 function get_next_interval() {
     // gets the next interval from the slider in ms
@@ -64,79 +37,79 @@ function get_next_interval() {
     }
 }
 
-function draw_next() {
-    // returns true if there is more to draw
-    if (!next_to_draw) {
-        // done
-        playing = false;
-        next_to_draw = null;
-        return false;
-    } else if (next_to_draw.cell == RECORD_RESET) {
-        reset_grid(true);
-    } else {
-        paint_cell(next_to_draw.cell, next_to_draw.state);
-    }
-    next_to_draw = next_to_draw.next;
-    return true;
+let dumb_counter = 0;
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function draw() {
-    // draw the next character and set a timeout. If playing == false, abort
+/**
+ * Function to block the progress of the algorithms the desired amount of time.
+ * Used to freeze them in their tracks while we progress.
+ */
+async function playback_wait() {
     if (playing) {
-        let timeout = get_next_interval();
-        let count = -1;
-        if (timeout == 0) {
-            // batch with minimum timeout mode
-            count = 1000;
-        }
-        // if the timeout is zero, draw them as fast as possible since we just
-        // want to display the result
-        while ((timeout == -1 || timeout == 0) && playing && count != 0) {
-            if (!draw_next()) playing = false;
-            timeout = get_next_interval();
-            --count;
-        }
+        let interval = get_next_interval();
 
-        if (timeout != -1) {
-            draw_next();
-            timeout = setTimeout(draw, timeout);
+        if (interval == -1) {
+            ++dumb_counter;
+    
+            if (dumb_counter < BREAK_INTERVAL) {
+                return;
+            }
+            interval = 1;
+            dumb_counter = 0;
         }
+        let current_seed = seed;
+        await sleep(interval);
+        if (seed != current_seed) throw new Error("Murdering this instantiation of search with deliberate error (╯°□°）╯︵ ┻━┻");
+
+        return;
+    } else {
+        // we need to either wait for the play button to be pressed and resume
+        // playing, or we need to wait for the step button
+        
+        await new Promise( (resolve, reject) => {
+            play_button.addEventListener('click', e => {
+                if (current_seed == seed) resolve();
+            }, {once: true});
+            step_button.addEventListener('click', e => {
+                if (current_seed == seed) resolve();
+            }, {once: true});
+        })
     }
+
+}
+
+function reset(node) {
+    let clone = node.cloneNode();
+    node.parentNode.replaceChild(clone, node);
+}
+
+function disable_playback() {
+    playing = false;
+    step_button.disabled = true;
+    play_button.disabled = true;
+
+    // remove event listeners from play/step buttons to prevent and unfulfilled
+    // promises from resuming
+    seed = Math.random();
+
+    play_button.addEventListener('click', play_pause_button);
+}
+
+function enable_playback() {
+    playing = true;
+    step_button.disabled = false;
+    play_button.disabled = false;
 }
 
 function play_pause_button() {
     playing = !playing;
-
-    if (playing) {
-        if (!next_to_draw) {
-            next_to_draw = history.head;
-            reset_grid(true);
-        }
-        // draw the current square
-        draw();
-    } else {
-        playing = false;
-    }
 }
 
-function stop() {
-    playing = false;
-    next_to_draw = null;
-    reset_grid();
-}
-
-function end_recording() {
-    play_button.disabled = false;
-    step_button.disabled = false;
-    stop_button.disabled = false;
-    playing = false;
-}
 
 // link into these buttons since they can affect playback
-document.getElementById("clear-button").addEventListener("click", reset_recording)
-document.getElementById("reset-button").addEventListener("click", reset_recording)
 
 // playback buttons
 play_button.addEventListener("click", play_pause_button);
-step_button.addEventListener("click", draw_next);
-stop_button.addEventListener("click", stop);

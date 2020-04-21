@@ -41,9 +41,10 @@
                 <div class="controls-box">
                     <label for="algorithm-select">Algorithm</label>
                     <select id="algorithm-select">
-                        <option value="dfs" selected>Depth First</option>
+                        <option value="dfs">Depth First</option>
                         <option value="ids">Iterative Deepening</option>
                         <option value="bfs">Breadth First</option>
+                        <option value="gbfs" selected>Greedy Best First Search</option>
                         <option value="a*" >A*</option>
                     </select>
                     <br>
@@ -62,7 +63,21 @@
                     🐇<input id="playback-speed" type="range" min="0" max="4" step="1" value="0">🐢<br>
                     <button class="playback-btn" id="play-button" disabled="true">&#x23ef;&#xFE0E;</button>
                     <button class="playback-btn" id="step-button" disabled="true">&#x23ED;&#xFE0E;</button>
-                    <button class="playback-btn" id="stop-button" disabled="true">&#x23f9;&#xFE0E;</button>
+                </div>
+                <div class="controls-box">
+                    <table>
+                        <tr>
+                            <td class="table-label">Length</td>
+                            <td class="results" id="results-length">0</td>
+                        </tr>
+                        <tr>
+                            <td class="table-label">Intermediate States</td>
+                            <td class="results" id="results-intermediate-states">0</td>
+                        </tr>                        <tr>
+                            <td class="table-label">Max Frontier Size</td>
+                            <td class="results" id="results-max-frontier">0</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
