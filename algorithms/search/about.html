@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>About Search Algorithms</title>
+        <link rel="stylesheet" type="text/css" href="search.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <div class="about">
+            <h1>Search Algorithms</h1>
+            <p>A collection of search algorithms from Russel & Norvig's <b>Artificial Intelligence: A Modern Approach</b>, 
+                implemented early 2020 by Jayden Milne (<a href="https://github.com/jaydenmilne">@jaydenmilne</a>)</p>
+
+            <ul>
+                <li><a href="license.txt">License</a> (AGPL)</li>
+                <li><a href="https://github.com/jaydenmilne/jaydenmilne.github.io/tree/master/algorithms/search">Source</a></li>
+            </ul>
+
+            <h2 id="instructions">Instructions</h2>
+            <ol>
+                <li>Left click, or tap quickly, on a non-wall cell to place a tile. 
+                    <p>Left clicking and dragging on a wall cell will remove walls.</p></li>
+                <li>Right click once to place the start node, right click again to place the goal node, or long tap.</li>
+                <li>Select a search strategy and heuristic</li>
+                <li>Adjust the search speed as desired</li>
+                <li>Press the "Run" button</li>
+            </ol>
+
+            <p>While the search is running, press the play/pause button (<button>&#x23ef;&#xFE0E;</button>) to pause the search, 
+                and then use the step button (<button>&#x23ED;&#xFE0E;</button>) to advance the search one state at a time.</p>
+
+            <h2>Colors</h2>
+            <ul>
+                <li><div id="start" class="color-box">Start Node</div></li>
+                <li><div id="goal" class="color-box">Goal Node</div></li>
+                <li><div id="wall" class="color-box">Wall Node</div></li>
+                <li><div id="path" class="color-box">Node on Solution Path</div></li>
+                <li><div id="frontier" class="color-box">Node on Frontier</div></li>
+                <li><div id="explored" class="color-box" style="color:white">Explored Node</div></li>
+            </ul>
+
+            <script src="grid.js"></script>
+
+            <script>
+                document.getElementById("start").style.backgroundColor = GRID_START_COLOR;
+                document.getElementById("goal").style.backgroundColor = GRID_GOAL_COLOR;
+                document.getElementById("wall").style.backgroundColor = GRID_WALL_COLOR;
+                document.getElementById("path").style.backgroundColor = GRID_PATH_COLOR;
+                document.getElementById("frontier").style.backgroundColor = GRID_FRONTIER_COLOR;
+                document.getElementById("explored").style.backgroundColor = GRID_EXPLORED_COLOR;
+
+                
+            </script>
+
+
+            <h2>Child States</h2>
+            <p>By default algorithms will only consider 4-connected neighbors (up, down, left, right).</p>
+            <p>If selected, the "8-connected checkbox" will consider diagonal moves as well.</p>
+
+            <h3>4-connected Search Order:</h3>
+            <table class="order-table" border="1">
+                <tr><td> </td><td>4</td><td> </td></tr>
+                <tr><td>3</td><td> </td><td>2</td></tr>
+                <tr><td> </td><td>1</td><td> </td></tr>
+            </table>
+
+            <h3>8-connected Search Order:</h3>
+            <table class="order-table" border="1">
+                <tr><td>1</td><td>4</td><td>6</td></tr>
+                <tr><td>2</td><td> </td><td>7</td></tr>
+                <tr><td>3</td><td>5</td><td>8</td></tr>
+            </table>
+
+            <h4 id="legal">Legal</h3>
+                <a href="assets/UFL.txt">Font License</a>
+            </div>
+
+
+    </body>
+</html>

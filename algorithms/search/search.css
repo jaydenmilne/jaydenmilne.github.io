@@ -2,6 +2,7 @@ body {
     font-family: 'Lato', sans-serif;
     background-color: #121212;
     color: white;
+    padding-inline-start: 0px;
 }
 
 #grid {
@@ -66,6 +67,34 @@ body {
     font-family: ubuntumono;
     font-size: 14pt;
     min-width: 110px;
+}
+
+a {
+    color: white;
+}
+
+.about {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.order-table {
+    font-family: ubuntumono;
+}
+
+.color-box {
+    font-family: ubuntumono;
+    color: #121212;
+    padding: 5px;
+    margin: 5px;
+    width: fit-content;
+}
+
+.about-list {
+    padding: 0;
+    padding-left:0px;
+    margin: 5px;
+    list-style-type: none;
 }
 
 /*
