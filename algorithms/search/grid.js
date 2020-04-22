@@ -486,11 +486,11 @@ function update_url() {
     params.set("sz", `${grid_info.cells_x}-${grid_info.cells_y}`);
 
     if (goal_cell != null) {
-        params.set("s", `${goal_cell.x}-${goal_cell.y}`)
+        params.set("g", `${goal_cell.x}-${goal_cell.y}`)
     }
 
     if (start_cell != null) {
-        params.set("g", `${start_cell.x}-${start_cell.y}`)
+        params.set("s", `${start_cell.x}-${start_cell.y}`)
     }
 
     let cells = "";
