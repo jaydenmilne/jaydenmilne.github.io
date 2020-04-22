@@ -57,11 +57,6 @@ clear_button.addEventListener("click", function() {
     clear_url();
 });
 
-// disable right click context menu on the canvas
-canvas.oncontextmenu = (event) => {
-    event.preventDefault();
-    return false;
-};  
 
 // logical representation of the state of the grid.
 let grid = [];
@@ -90,6 +85,12 @@ function get_goal_cell() {
 
 const canvas = document.getElementById('grid');
 const ctx = canvas.getContext('2d');
+
+// disable right click context menu on the canvas
+canvas.oncontextmenu = (event) => {
+    event.preventDefault();
+    return false;
+};  
 
 /**
  * Initialize the canvas element
