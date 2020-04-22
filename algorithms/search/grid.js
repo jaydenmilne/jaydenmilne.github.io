@@ -1,8 +1,9 @@
 "use strict";
 /**
- * The goal of this file is to abstract away all of the grid related functionality
- * so the algorithms can call abstract methods and not have to worry about the minutia 
- * of drawing.
+ * This file handles
+ * - Initializing the grid
+ * - Parsing saved patterns in the URL and updating them
+ * - Keeping the grid/canvas in sync
  */
 
 const GRID_BACK_COLOR = '#292929';
@@ -14,14 +15,20 @@ const GRID_PATH_COLOR = "#CF6679";
 const GRID_EXPLORED_COLOR = "#23036A";
 const PAGE_BACKROUND_COLOR = "#121212";
 
-const canvas = document.getElementById('grid');
-const ctx = canvas.getContext('2d');
+const SAVE_WAIT_TEXT = "⏳ Waiting";
+const SAVE_SAVED_TEXT = "✅ Saved";
+const SAVE_OFF = "❌ Off"
 
 const grid_size_dropdown = document.getElementById("cell-size-select");
 const clear_button = document.getElementById("clear-button");
 const fixed_cell_radio = document.getElementById("cell-type-fixed");
+const fixed_grid_radio = document.getElementById("cell-type-fixed-grid");
+
 const grid_size_box = document.getElementById("grid-size-box");
 const reset_button = document.getElementById("reset-button");
+
+const save_in_url_box = document.getElementById("save-url-checkbox");
+const saved_span = document.getElementById("saved-span");
 
 class Cell {
     constructor(x, y) {
@@ -47,9 +54,10 @@ clear_button.addEventListener("click", function() {
     enable_playback();
     disable_playback();
     init_canvas(canvas, ctx);
+    clear_url();
 });
 
-// disable right click context menu
+// disable right click context menu on the canvas
 canvas.oncontextmenu = (event) => {
     event.preventDefault();
     return false;
@@ -80,6 +88,14 @@ function get_goal_cell() {
     return goal_cell;
 }
 
+const canvas = document.getElementById('grid');
+const ctx = canvas.getContext('2d');
+
+/**
+ * Initialize the canvas element
+ * @param {HTMLCanvasElement} c 
+ * @param {RenderingContext} ctx 
+ */
 function init_canvas(c, ctx) {
     c.width = c.clientWidth;
     c.height = c.clientHeight;
@@ -135,6 +151,11 @@ function init_canvas(c, ctx) {
     start_cell = goal_cell = null;
 }
 
+/**
+ * Fill in the given scell
+ * @param {Cell} cell 
+ * @param {GRID_*} state 
+ */
 function paint_cell(cell, state) {
     let color = GRID_BACK_COLOR;
     switch (state) {
@@ -172,6 +193,12 @@ function paint_cell(cell, state) {
     );
 }
 
+/**
+ * God method that updates a cell in the grid, and paints it if needed
+ * @param {Cell} cell to update 
+ * @param {GRID_*} state to set it to
+ * @param {boolean} paint if it should be painted in the grid 
+ */
 function update_cell(cell, state, paint=true) {
     // don't update a grid cell that doesn't exist
     if (cell.x >= grid_info.cells_x || cell.y >= grid_info.cells_y) return;
@@ -203,6 +230,11 @@ function getMousePos(evt) {
     };
 }
 
+/**
+ * Gets the logical cell in the grid from the given mouse event
+ * @param {MouseEvent, TouchEvent} event 
+ * @returns {Cell} the cell location
+ */
 function get_cell_from_selection(event) {
     // Pass in a MouseEvent or a Touch
     var pos = getMousePos(event);
@@ -241,6 +273,7 @@ function mousedown_begin(event) {
 
     // update the current cell
     update_cell(cell, state);
+    schedule_url_update();
 }
 
 function touch_begin(event) {
@@ -276,9 +309,11 @@ function touch_begin(event) {
             state = place_goal ? GRID_GOAL : GRID_START;
             place_goal = !place_goal;
             update_cell(cell, state);
-            
+            Navigator.vibrate(200);  // vibrate for 200ms
         }
     }, 1000)
+
+    schedule_url_update();
 }
 
 function selection_end(event) {
@@ -303,11 +338,6 @@ function interpolate_between(p1, p2) {
     let sx = x0 < x1 ? 1 : -1;
     let sy = y0 < y1 ? 1 : -1;
     
-    //if (deltax == 0) {
-    //    // just draw a vertical line
-    //    return;
-    //}
-
     let err = dx + dy;
 
     while (true) {
@@ -333,6 +363,7 @@ function selection_move(event) {
         let cell = get_cell_from_selection(event);
         interpolate_between(last_sample, cell);
         last_sample = cell;
+        schedule_url_update();
     }
 }
 
@@ -380,6 +411,145 @@ function reset_grid(paint=true, toggle_grid=true) {
     }
 }
 
+// *****************************************************************************
+// * URL Handling (saving state in URL)
+
+
+// Cache the setTimeout value used for delaying the URL update so we can 
+// cancel it
+let update_timeout = null;
+
+
+function clear_url() {
+    // using the history API doesn't work when loading from file:///
+    window.location.hash = "";
+}
+
+/**
+ * Meant to be run on page load. Attempt to parse the URL, and init the canvas/grid
+ */
+function decode_url() {
+    // check if there are params
+    let hash = window.location.hash.substring(1);
+    let params = new URLSearchParams(hash);
+
+    if (params.has('sz')) {
+        // if there is a fixed size, there may be something to load
+        let size = params.get('sz');
+        size = size.replace('-', ',');
+
+        // change the application state by changing the UI, what could go wrong?
+        grid_size_box.value = size;
+        fixed_cell_radio.checked = false;
+        fixed_grid_radio.checked = true;
+
+        init_canvas(canvas, ctx);
+
+        if (params.has('g')) {
+            let goal = params.get('g').split('-');
+            goal = new Cell(parseInt(goal[0]), parseInt(goal[1]));
+            update_cell(goal, GRID_GOAL, true);
+        }
+    
+        if (params.has('s')) {
+            let start = params.get('s').split('-');
+            start = new Cell(parseInt(start[0]), parseInt(start[1]));
+            update_cell(start, GRID_START, true);
+        }
+
+        if (params.has('w')) {
+            let runs = params.get('w').split('-');
+            for (let i = 0; i < runs.length; ++i) {
+                let run = runs[i].split('.');
+                for (let j = 0; j < parseInt(run[2]); ++j) {
+                    update_cell(new Cell(parseInt(run[0]) + j, parseInt(run[1])), GRID_WALL, true);
+                }
+            }
+        }
+    } else {
+        // init the canvas with the defaults
+        init_canvas(canvas, ctx);
+    }
+
+    saved_span.innerText = SAVE_SAVED_TEXT;
+}
+
+
+/**
+ * Makes the URL reflect the current state of the grid
+ */
+function update_url() {
+    let params = new URLSearchParams();
+
+    // Set fixed things
+    params.set("sz", `${grid_info.cells_x}-${grid_info.cells_y}`);
+
+    if (goal_cell != null) {
+        params.set("s", `${goal_cell.x}-${goal_cell.y}`)
+    }
+
+    if (start_cell != null) {
+        params.set("g", `${start_cell.x}-${start_cell.y}`)
+    }
+
+    let cells = "";
+    let x, y;
+
+    for (y = 0; y < grid_info.cells_y; ++y) {
+        let row_start = null;
+        for (x = 0; x < grid_info.cells_x; ++x) {
+            let v = grid[y][x];
+            if (v == GRID_WALL && row_start == null) {
+                row_start = new Cell(x, y);
+            } else if (v != GRID_WALL && row_start != null) {
+                let run_len = x - row_start.x;
+                cells += `${row_start.x}.${row_start.y}.${run_len}-`
+                row_start = null;
+            }
+        }
+        if (row_start != null) {
+            let run_len = x - row_start.x;
+            cells += `${row_start.x}.${row_start.y}.${run_len}-`
+        }
+
+    }
+
+    params.set("w", cells);   
+    window.location.hash = params.toString()
+}
+
+/**
+ * Schedule a URL update after the user interacts with the grid
+ */
+function schedule_url_update() {
+    if (!save_in_url_box.checked) return;
+
+    saved_span.innerText = SAVE_WAIT_TEXT;
+    
+    function update() {
+        clearTimeout(update_timeout);
+        update_url();
+        saved_span.innerText = SAVE_SAVED_TEXT;
+    }
+
+    if (update_timeout == null) {
+        update_timeout = setTimeout(update, 2000);
+    } else {
+        clearTimeout(update_timeout);
+        update_timeout = setTimeout(update, 2000);
+    }
+}
+
+save_in_url_box.addEventListener("change", e => {
+    if (event.target.checked) {
+        update_url();
+        saved_span.innerText = SAVE_SAVED_TEXT;
+    } else {
+        clearTimeout(update_timeout);
+        saved_span.innerText = SAVE_OFF;
+    }
+})
+
 reset_button.addEventListener("click", reset_grid);
 
-init_canvas(canvas, ctx);
+decode_url();
