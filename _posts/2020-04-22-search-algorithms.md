@@ -31,4 +31,4 @@ Features include:
 
 It was tricky working around JavaScript’s single threaded nature, async/await proved to be extremely useful in this project. 
 
-See https://jayd.ml/algorithms/search/about.html for more info.
+See [About](https://jayd.ml/algorithms/search/about.html) for more info.
