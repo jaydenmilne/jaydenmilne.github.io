@@ -282,14 +282,57 @@ function touch_begin(event) {
 }
 
 function selection_end(event) {
+    last_sample = null;
     down = false;
+}
+
+/**
+ * Uses Bresenham's algorithm to draw a rasterized line between two points
+ * https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+ * @param {Cell} p1
+ * @param {Cell} p2 
+ */
+function interpolate_between(p1, p2) {
+    let x0 = p1.x;
+    let y0 = p1.y;
+    let x1 = p2.x;
+    let y1 = p2.y;
+    
+    let dx = Math.abs(x0 - x1);
+    let dy = -1 * Math.abs(y0 - y1);
+    let sx = x0 < x1 ? 1 : -1;
+    let sy = y0 < y1 ? 1 : -1;
+    
+    //if (deltax == 0) {
+    //    // just draw a vertical line
+    //    return;
+    //}
+
+    let err = dx + dy;
+
+    while (true) {
+        update_cell(new Cell(x0, y0), clearing ? GRID_EMPTY : GRID_WALL);
+        if (x0 == x1 && y0 == y1) break;
+
+        let e2 = 2 * err;
+        if (e2 >= dy) {
+            err += dy;
+            x0 += sx;
+        }
+
+        if (e2 <= dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
+
 }
 
 function selection_move(event) {
     if (down !== false) {
         let cell = get_cell_from_selection(event);
+        interpolate_between(last_sample, cell);
         last_sample = cell;
-        update_cell(cell, clearing ? GRID_EMPTY : GRID_WALL);
     }
 }
 

@@ -181,7 +181,6 @@ async function run_ids(problem) {
 
         depth++;
     }
-    console.log(depth)
     return "failure";
 }
 
@@ -250,9 +249,6 @@ async function graph_search(problem) {
         ++intermediate_states;
         
         if (frontier.empty) return "failure";
-
-        console.log(frontier.size);
-        console.log("max" + max_frontier_size);
 
         max_frontier_size = Math.max(frontier.size, max_frontier_size);
         node = frontier.pop();
