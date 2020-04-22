@@ -7,7 +7,7 @@ categories: algorithms
 
 I've been working hard on a new search algorithm visualizer, check it out!
 
-[jayd.ml/algorithms/search](jayd.ml/algorithms/search)
+[jayd.ml/algorithms/search](https://jayd.ml/algorithms/search)
 
 Using an HTML5 canvas and async/await, it implements:
 
