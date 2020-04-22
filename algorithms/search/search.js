@@ -156,6 +156,17 @@ run_button.addEventListener("click", run_click);
 // * Search Algorithms
 
 /**
+ * Runs a random walk on the problem (DFS but order of next action is random)
+ * @param {Problem} problem 
+ */
+async function run_random_walk(problem) {
+    // replace actions_children with our better version
+    problem.actions_children = actions_children_shuffled_generator(problem.actions_children);
+    max_frontier_size = "N/A";
+    return recursive_dls(problem.root, problem, -1);
+}
+
+/**
  * Run Depth First Search (not depth limited) on the problem
  * @param {Problem} problem to run on 
  */
@@ -295,6 +306,59 @@ async function run_gbfs(problem) {
 
 }
 
+/**
+ * Run Recursive Best-First Search (3.26)
+ * @param {Problem} problem 
+ */
+async function run_rbfs(problem) {
+    let h = get_heuristic();
+
+    async function rbfs(problem, node, f_limit) {
+        ++intermediate_states;
+        if (problem.goal_test(node)) return [node, 0];
+        
+        await update_and_record(node, GRID_PATH);
+
+        let successors = problem.actions_children(node, problem);
+
+        if (successors.length == 0) {
+            await update_and_record(node, GRID_EMPTY);
+            return ["failure", Infinity];
+        }
+
+        for (let i = 0; i < successors.length; ++i) {
+            let s = successors[i];
+            s["f"] = Math.max(s.depth + h(s), node.f);
+        }
+
+        while (true) {
+            let successors_sorted = successors.sort( (a, b) => {
+                return a.f - b.f;
+            })
+
+            let best = successors_sorted[0];
+            if (best.f > f_limit) {
+                await update_and_record(node, GRID_EMPTY);
+                return ["failure", best.f];
+            }
+
+            let alternative = successors_sorted.length > 1 ? successors_sorted[1] : successors_sorted[0];
+            
+            let result = await rbfs(problem, best, Math.min(f_limit, alternative.f));
+            best.f = result[1];
+            if (result[0] != "failure") return result;
+            
+        }
+    }
+
+    problem.root["f"] = h(problem.root);
+    let result = await rbfs(problem, problem.root, Infinity);
+    max_frontier_size = "N/A";
+
+    await draw_result(result[0]);
+    return result[0];
+}
+
 async function run_astar(problem) {
     let h = get_heuristic();
 
@@ -310,6 +374,7 @@ async function run_astar(problem) {
     return result;
 
 }
+
 
 // *****************************************************************************
 // * Helper Functions
@@ -395,6 +460,48 @@ async function evaluate_and_add(children, i, j, problem, node, mark_frontier) {
     children.push(child)
 }
 
+/**
+ * Given an actions_children object, returns a function that calls it but 
+ * shuffles the result
+ * @param {function} actions_children 
+ */
+function actions_children_shuffled_generator(actions_children) {
+
+    /**
+     * Randomly shuffle an array
+     * https://stackoverflow.com/a/2450976/1293256
+     * https://gomakethings.com/how-to-shuffle-an-array-with-vanilla-js/
+     * @param  {Array} array The array to shuffle
+     * @return {String}      The first item in the shuffled array
+     */
+    function shuffle(array) {
+
+        var currentIndex = array.length;
+        var temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+
+    };
+
+    return (node, problem, mark_frontier=false) => {
+        let result = actions_children(node, problem, mark_frontier);
+        shuffle(result);
+        return result;
+    }
+}
+
 function actions_children_4(node, problem, mark_frontier=false) {
     let children = Array();
     let cell = node.cell
@@ -457,6 +564,9 @@ async function run() {
     console.log(`Starting algorithm ${algorithm_select.value}...`)
 
     switch (algorithm_select.value) {
+        case "random":
+            algo = run_random_walk;
+            break;
         case "dfs":
             algo = run_dfs;
             break;
@@ -468,6 +578,9 @@ async function run() {
             break;
         case "gbfs":
             algo = run_gbfs;
+            break;
+        case "rbfs":
+            algo = run_rbfs;
             break;
         case "a*":
             algo = run_astar;

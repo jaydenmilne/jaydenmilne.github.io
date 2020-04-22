@@ -25,12 +25,14 @@ function get_next_interval() {
         case 1:
             return 0;  // batches of 10 with 0ms timeout
         case 2:
-            return 1;
+            return 0.1;
         case 3:
+            return 1;
+        case 4:
             return 10;
-        case 4: 
+        case 5: 
             return 100;
-        case 5:
+        case 6:
             return 1000;
         default:
             alert("oops");

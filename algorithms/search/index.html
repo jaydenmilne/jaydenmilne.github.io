@@ -20,6 +20,7 @@
                         <input type="radio" id="cell-type-fixed" name="cell-type" value="fixed" checked>
                         <label for="cell-type-fixed">Fixed Cell Size
                             <select id="cell-size-select">
+                                <option value="1">1px</option>
                                 <option value="5">5px</option>
                                 <option value="10">10px</option>
                                 <option value="20" selected>20px</option>
@@ -40,11 +41,13 @@
                 <div class="controls-box">
                     <label for="algorithm-select">Algorithm</label>
                     <select id="algorithm-select">
+                        <option value="random">Random Walk</option>
                         <option value="dfs">Depth First</option>
                         <option value="ids">Iterative Deepening</option>
                         <option value="bfs">Breadth First</option>
-                        <option value="gbfs" selected>Greedy Best First Search</option>
-                        <option value="a*" >A*</option>
+                        <option value="gbfs">Greedy Best First Search</option>
+                        <option value="rbfs">Recursive Best First Search</option>
+                        <option value="a*" selected>A*</option>
                     </select>
                     <br>
                     <label for="heuristic-select">Heuristic</label>
@@ -59,7 +62,7 @@
                 </div>
                 <div class="controls-box">
                     <label for="playback-speed">Search Speed</label><br>
-                    🐇<input id="playback-speed" type="range" min="0" max="4" step="1" value="0">🐢<br>
+                    🐇<input id="playback-speed" type="range" min="0" max="5" step="1" value="0">🐢<br>
                     <button class="playback-btn" id="play-button" disabled="true">&#x23ef;&#xFE0E;</button>
                     <button class="playback-btn" id="step-button" disabled="true">&#x23ED;&#xFE0E;</button>
                 </div>
