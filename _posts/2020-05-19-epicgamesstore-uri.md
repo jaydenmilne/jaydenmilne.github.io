@@ -7,7 +7,8 @@ categories: games
 
 Building off my last post, I built a little script called [steamsync](https://github.com/jaydenmilne/steamsync)
 that will import your Epic Games Store games as shortcuts into Steam. It is pip
-installable (`pip install steamsync && steamsync.py`), so give it a try!
+installable (`pip install steamsync && steamsync.py`), so give it a try! 
+([pypi package](https://pypi.org/project/steamsync/))
 
 ## Epic Games Store URIs
 
