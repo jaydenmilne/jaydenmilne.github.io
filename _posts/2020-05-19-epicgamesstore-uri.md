@@ -42,10 +42,17 @@ Sure enough, after some testing, putting that URI in as the shortcut in Steam
 launches the game.
 
 Unfortunately, since we aren't giving the path to the executable, Steam doesn't
-automatically pull in the games icon. And the EGS has a habit of opening itself
-after the game exits, which can be kind of annoying in Big Picture mode.
+automatically pull in the games icon (*update: see below*). And the EGS has a 
+habit of opening itself after the game exits, which can be kind of annoying in 
+Big Picture mode.
 
-### `steamsync`
+**UPDATE**
+
+Good news everyone, if you just give the path to the executable as the `icon`
+value in `shortcuts.vdf`, Steam will get the icon from the executable, even if
+you use a URI!
+
+## `steamsync`
 
 Versions of `steamsync` after `0.2.0` have this fix in place. If you want to use
 the path to the executable method, use the `--use-paths` option. This works for
