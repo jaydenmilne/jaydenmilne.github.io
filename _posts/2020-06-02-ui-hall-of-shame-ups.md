@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "UI Hall of Shame: UPS"
-date:   2020-02-06 16:52
+date:   2020-06-02 22:55
 categories: bad-ui
 ---
 
