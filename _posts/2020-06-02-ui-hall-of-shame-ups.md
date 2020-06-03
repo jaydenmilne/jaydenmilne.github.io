@@ -49,4 +49,6 @@ sessionStorage.setItem("UPS_SimplifiedClientID", m)
 }
 ```
 
-High quality stuff
+High quality stuff. If they had a way to report a bug I would do it.
+
+Oh look, [it's been around for four months](https://www.drupal.org/project/simple_package_tracking/issues/3113863).
