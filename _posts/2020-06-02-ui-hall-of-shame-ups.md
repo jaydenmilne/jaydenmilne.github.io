@@ -11,7 +11,7 @@ Open a link to track a package, of the format `https://www.ups.com/track?loc=en_
 
 The page is automatically redirected to `https://www.ups.com/track?loc=en_US&tracknum=DEADBEEFCAFEBABE00/trackdetails`
 
-<img src="/assets/posts/2020-06-02-ui-hall-of-shame-ups/redirected1.png">
+<img src="/assets/posts/2020-06-02-ui-hall-of-shame-ups/redirected1.jpg">
 
 Press refresh, or try and share the link with someone:
 
