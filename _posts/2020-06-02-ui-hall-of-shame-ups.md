@@ -17,4 +17,4 @@ Press refresh, or try and share the link with someone:
 
 <img src="/assets/posts/2020-06-02-ui-hall-of-shame-ups/404.png">
 
-Nice job.
+Nice
