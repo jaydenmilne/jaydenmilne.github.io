@@ -12,3 +12,6 @@ The quality level of this stuff is questionable at best.
 
 I make no warranty as to the accuracy, entertainment value, or legality of my 
 advice. These are my opinions and not my employer's.
+
+Unless otherwise noted, all code shown in this blog is MIT licensed, and 
+everything else is CC BY-SA 4.0.
