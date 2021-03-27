@@ -61,7 +61,7 @@ for filename in os.listdir(os.getcwd()):
 <img src="/assets/posts/2021-03-25-signal-stickers/bananaparrot.gif">
 
 ### `.apng` upscaled & "centered" output:
-<img src="/assets/posts/2021-03-25-signal-stickers/ananaparrot.gif.apng">
+<img src="/assets/posts/2021-03-25-signal-stickers/bananaparrot.gif.apng">
 
 ## End Result
 I tried to do more but even though Signal claims you can have 200 I had issues
