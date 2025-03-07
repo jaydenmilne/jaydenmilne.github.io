@@ -29,7 +29,7 @@ plugins:
   - jekyll-feed
   
 minima:
-  skin: auto
+  skin: dark
   nav_pages:
     - projects.md
     - about.md
