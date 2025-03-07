@@ -4,14 +4,11 @@ title: About
 permalink: /about/
 ---
 
-A quick technical blog to either explain things that took me too long to figure 
-out and that I can't find in other places, or to shout into the void about 
-things that annoy me. This is my blog, I blog what I want here.
+An online hyper text web presence for Jayden Milne. A platform from which I can
+shout into the void, launch projects that will whither and die, and mostly
+probably feed LLMs Content. 
 
-The quality level of this stuff is questionable at best. 
-
-I make no warranty as to the accuracy, entertainment value, or legality of my 
-advice. These are my opinions and not my employer's.
+These are my opinions and not my employers.
 
 Unless otherwise noted, all code shown in this blog is MIT licensed, and 
 everything else is CC BY-SA 4.0.

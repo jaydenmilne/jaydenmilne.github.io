@@ -16,21 +16,23 @@
 title: Jayden's Blog
 email: 
 description: >- # this means to ignore newlines until "baseurl:"
-  Jayden's blog-o-fun. 
-  What will you get? Even I don't know
+  Jayden's Amazing Blog
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://jayd.ml" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jaydenmilne
 github_username:  jaydenmilne
 
 # Build settings
 markdown: kramdown
-remote_theme: jekyll/minima 
+theme: minima 
 plugins:
   - jekyll-feed
   
 minima:
-  skin: dark
+  skin: auto
+  nav_pages:
+    - projects.md
+    - about.md
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
