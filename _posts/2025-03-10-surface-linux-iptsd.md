@@ -84,7 +84,7 @@ Mar 10 09:11:55 hostname kernel:  </TASK>
 So it looks like [surface linux's iptsd](https://github.com/linux-surface/iptsd)
 doesn't like being woken up and told to freeze itself right after.
 
-This makes my laptop's battery die, which makes me sad. 
+This makes my laptop's battery die, which makes me sad. [linux-surface/iptsd#190](https://github.com/linux-surface/iptsd/issues/190)
 
 ## Workaround
 
