@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "iptsd prevents hibernation"
-date:   2025-03-07 08:44
+date:   2025-03-10 19:10
 ---
 
 Put Arch on my Surface Book 1, and it wouldn't hibernate, mostly after using
