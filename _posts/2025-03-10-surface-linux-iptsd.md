@@ -8,7 +8,6 @@ Put Arch on my Surface Book 1, and it wouldn't hibernate, mostly after using
 systemd's `HibernateDelaySec=`. Poking through the logs, I saw this:
 
 <details>
-<summary>logs </summary>
 
 ```
 (system is resuming after sleeping to hibernate)
@@ -78,7 +77,6 @@ Mar 10 09:11:55 hostname kernel: RBP: 00007ffd8e941fe0 R08: 0000000000000000 R09
 Mar 10 09:11:55 hostname kernel: R10: 0000000000000000 R11: 0000000000000202 R12: 000056fd5996ecf0
 Mar 10 09:11:55 hostname kernel: R13: 0000000000000002 R14: 00007ffd8e942980 R15: 000000000000001d
 Mar 10 09:11:55 hostname kernel:  </TASK>
-
 ```
 
 </details>
