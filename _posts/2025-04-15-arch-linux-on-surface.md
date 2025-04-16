@@ -5,12 +5,11 @@ date:   2025-04-15 17:34
 ---
 
 Recently Microsoft told me that my Surface Book 1 was garbage and I should throw
-it in the garbage. Even though it is old and only a dual core and only has 8 GB
-of RAM, I resent being told what to do, especially since I used to really value
-that Microsoft let you keep updating your hardware. 
+it in the trash. Even though it is old and only a dual core and only has 8 GB
+of RAM, I resent being told what to do.
 
 Anyway, this Windows installation had been around since 2017 and had decayed a
-lot as Windows tents to do, and this laptop got me through college, and I'm 
+lot as Windows tends to do. Plus, this laptop got me through college, and I'm 
 not done with it yet, so time to be an anarchist linux hacker I guess.
 
 ### Why keep using this thing in 2025?
@@ -50,7 +49,7 @@ filling some gaps.
 * Feels much lighter weight and snappier than Windows did
 * KDE looks fantastic on the high DPI display 
 * Battery life is about the same as Windows. 
-* Touchpad feels great to use
+* Touchpad feels great to use, guestures work
 * Touchscreen works
 * Was able to have a large swapfile (only 8 GB RAM) and get hibernation to work
 
@@ -62,7 +61,7 @@ Apparently the Surface Book 1 series has some ACPI weirdness that makes S0ix
 
 This means when you shut the lid, the battery will drain at about 5% an hour,
 which is a problem for me since the usage pattern for this laptop these days is
-"once a week at best but it needs to be charged".
+"once a week at best but it needs to be charged when I need it".
 
 The workaround was to enable systemd's suspend-then-hibernate from KDE's power
 applet. There were some issues with a `linux-surface` driver blocking sleep,
@@ -103,12 +102,16 @@ a crash dump. While this was happening, I ran `pacman -Syu`, and something
 didn't handle there being 0 free bytes in `/tmp` well (I think `mkinitcpio`), 
 and it wouldn't boot after. 
 
-I converted to BTRFS after this debacle.
+I converted to BTRFS to use snapshots after this debacle.
 
 Also, I still don't think I've set up locales right somehow.
 
 # Conclusion
 
-I like it. I think the Plasma folks have done a great job making a sharp, snappy
-looking desktop. I love having the latest version of everything on Arch. I've
-got most of the software I want to work. Hopefully I'll never
+I like it. I think the KDE  folks have done a great job making a sharp, snappy
+looking desktop. I get a little more what all the people on hacker news complain
+about when they say the Windows desktop is so consistent.
+
+I love having the latest version of everything on Arch. I've got most of the 
+software I want to work. Hopefully I'll never have to reinstall or upgrade the
+os on this computer ever again.
