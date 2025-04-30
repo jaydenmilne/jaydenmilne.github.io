@@ -23,7 +23,7 @@ Unfortunately, using an advanced analytics package I've projected that around
 May 2026 the YouTube homepage will just be one video, and by September there 
 will be no videos at all on the homepage. 
 
-<img src="/assets/posts/2025-04-30-someone-at-youtube-needs-glasses/projection.png.png">
+<img src="/assets/posts/2025-04-30-someone-at-youtube-needs-glasses/projection.png">
 
 Presumably by then we'll have our mandatory NeuraLinks and the YouTube algorithm
 will be able to inject real-time ML generated content (and ads) straight into 
