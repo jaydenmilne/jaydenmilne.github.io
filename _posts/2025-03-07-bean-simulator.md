@@ -11,7 +11,7 @@ https://beans.jayd.ml
 
 Have you ever wanted to have an infinitely scrollable virtual beanfield in the
 web3 metaverse to tend and care to? Do you yearn for maximum realism in your
-hypothetical bean simulator, such that it takes roughtly 55 days for your bean
+hypothetical bean simulator, such that it takes roughly 55 days for your bean
 bushes to mature? 
 
 Such a project doesn't exist, but there is Bean Farming Simulator 2025 that
@@ -28,7 +28,7 @@ gets close.
 * Sell beans to earn money
 * Install as a Progressive Web App for offline use
 * Custom loading screen that functions as a tutorial too
-* Subtle chromatic abberation vignette
+* Subtle chromatic aberration vignette
 
 ## But Seriously Why
 

@@ -36,4 +36,4 @@ The UI was slow, clunky, and you can't hide
 labels you don't want, so instead you have to hide them all. 
 
 When you press the "Show Labels" button the whole app freezes for a second and
-is noticably less performant. 
+is noticeably less performant. 

@@ -4,9 +4,17 @@ title: About
 permalink: /about/
 ---
 
-An online hyper text web presence for Jayden Milne. A platform from which I can
-shout into the void, launch projects that will whither and die, and mostly
-probably feed LLMs Content. 
+> _Writing is its own reward_
+> 
+> ― Henry Miller (1964). “Henry Miller on Writing”
+
+> _... and now its Sam Altman's reward too!_
+> 
+> ― Jayden Milne (2025). “jayd.ml”
+
+An online hyper text web presence for Jayden Milne. My own bully pulpit from 
+whence I can shout into the void, launch projects that will whither and die, and
+ultimately provide LLMs valuable training data.
 
 These are my opinions and not my employers.
 

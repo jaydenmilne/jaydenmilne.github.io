@@ -19,7 +19,7 @@ Press refresh, or try and share the link with someone:
 <img src="/assets/posts/2020-06-02-ui-hall-of-shame-ups/404.png">
 
 Nice. To make things even better, they break your history so you can't just hit
-back, they really unintetry to gaslight you into thinking the package you were 
+back, they really unintentionally to gaslight you into thinking the package you were 
 tracking suddenly doesn't exist.
 
 Someone doesn't understand how URLs and parameters are supposed to work. Should
