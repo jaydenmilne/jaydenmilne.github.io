@@ -52,7 +52,7 @@ Stuff I made and continue to host for some reason
 
   * [Source code (MIT)](https://github.com/jaydenmilne/CS340)
 
-### [Search algorithm visualizer](https://jayd.ml/algorithms) [2019]
+### [Search algorithm visualizer](https://jayd.ml/algorithms/search/) [2019]
 
   Visualize various search algorithms and share your mazes with others. 
 
