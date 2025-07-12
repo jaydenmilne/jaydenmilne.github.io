@@ -4,6 +4,11 @@ title:  "Golang's encoding/XML is broken and no one seems to care"
 date:   2025-06-15 15:19
 ---
 
+> **_Programming Note:_** _You may have subscribed to this blog because of a 
+> snarky post about YouTube that for some reason was popular. Instead 
+> of more insightful(?) content like that, you're getting a complaint to no 
+> audience in particular about XML in Golang. You're welcome._
+
 For the first time I've felt betrayed somewhat by Go's standard library. `encoding/xml`
 is just broken in a lot of ways, has been for over a decade, and no one seems
 to want to fix it. I couldn't find a good independent, working xml library to use
@@ -174,7 +179,7 @@ We've found an [11 year old bug](https://github.com/golang/go/issues/8535) in
 `encoding/xml` that Google is unable or unwilling to fix. It was really not fun
 to discover this independently and find these ancient issues open.
 
-# Workaround 1: Fake Namespaces
+## Workaround 1: Fake Namespaces
 
 [One workaround is to a fake namespace and set it as the default namespace, eg](https://go.dev/play/p/13J3BUTh3kR)
 
@@ -232,6 +237,20 @@ Absent some gross (and insecure) string find/replacing action, the only way
 around this seems to be to have a separate model without the fake namespace for
 marshalling. Yikes.
 
-# Workaround 2: Custom types (!!)
+## Workaround 2: Custom types (!!)
 
-This is from [this comment on github](https://github.com/golang/go/issues/9519#issuecomment-2957545044).
+
+There are some other workarounds involving making a custom type:
+
+- https://github.com/golang/go/issues/9519#issuecomment-252196382
+- https://github.com/golang/go/issues/9519#issuecomment-2957545044
+
+I don't really love either of these though, since it will make working with
+the models a pain.
+
+# Summary
+
+Working with XML in golang is a pain and I do not recommend doing it for fun.
+
+Some people give up and just use `template/html` to cludge together exactly the
+XML they want. Maybe I'll post on that.

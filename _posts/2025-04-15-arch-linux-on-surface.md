@@ -84,13 +84,21 @@ very useful anyway.
 You _can_ get the cameras to work, but you have to fiddle with linux kernel 
 modules and run [a loopback script to enable it](https://neilzone.co.uk/2021/08/working-front-and-rear-cameras-on-debian-11-on-a-surface-pro-6-surfacebook-2-and-surface-go/). Not great.
 
-#### 4. No power states
+#### ~~4. No power states~~
 
-This laptop under Windows has "power states" that let you choose performance vs
-battery saver. These aren't supported in Linux, more ACPI weirdness I suppose.
+> **Update 07/25/25:** Apparently I just needed to install the `power-profiles-daemon`.
+KDE helpfully suggested I install this, and now I have three different power
+states (eco, normal, and performance).
+> 
+> In eco it aggressively downclocks to around 400mhz, normal is around 800mhz
+> and in performance it keeps it at the max non-boost clock speed (and spins up
+> the fans a bit)
 
-Whatever power state it defaults to is fine though, the fans rarely spin up
-(much less than they did on Windows)
+~~This laptop under Windows has "power states" that let you choose performance vs
+battery saver. These aren't supported in Linux, more ACPI weirdness I suppose.~~
+
+~~Whatever power state it defaults to is fine though, the fans rarely spin up
+(much less than they did on Windows)~~
 
 ### The Ugly
 
