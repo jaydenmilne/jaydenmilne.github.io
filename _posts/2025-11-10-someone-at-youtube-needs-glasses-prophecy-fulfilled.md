@@ -25,5 +25,6 @@ Let's analyze this picture and count the number of videos on the home screen:
 <img src="/assets/posts/2025-11-10-someone-at-youtube-needs-glasses-part-ii/annotated.jpg">
 
 Apparently [Poe's Law](https://en.wikipedia.org/wiki/Poe%27s_law) applies to 
-Google PMs, and maybe our mandatory NeuraLinks are coming sooner than I thought.
+Google PMs, satire is dead, and maybe our mandatory NeuraLinks are coming sooner 
+than I thought.
 
