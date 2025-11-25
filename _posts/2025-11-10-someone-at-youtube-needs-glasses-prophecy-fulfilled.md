@@ -16,8 +16,8 @@ org handled the criticism](https://youtu.be/_tZckjQylGU?t=25) as it sat at the
 [top of Hacker News](https://news.ycombinator.com/item?id=43846487) for a whole 
 day for some reason.
 
-The net result is that after months of hard work by ~~Gemini~~ YouTube engineers
-, the other day I fired up YouTube on an Apple TV and was graced with this:
+The net result is that after months of hard work by ~~Gemini~~ YouTube engineers, 
+the other day I fired up YouTube on an Apple TV and was graced with this:
 
 <img alt="there is only one ad and one video visible" src="/assets/posts/2025-11-10-someone-at-youtube-needs-glasses-part-ii/prophecy.jpg">
 
