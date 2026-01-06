@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title:  "MORE ENTICING THAN EVER: THE HYPNOVERSE"
