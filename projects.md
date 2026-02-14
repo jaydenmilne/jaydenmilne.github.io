@@ -17,6 +17,7 @@ Stuff I made and continue to host for some reason
   
   Recreation of Windows 2000 minesweeper in Godot, because why not.
 
+  * [Blog Post]({{site.baseurl}}{% link _posts/2026-02-14-godot-minesweeper.md%})
   * [Source code (AGPL)](https://github.com/jaydenmilne/godot-minesweeper)
 
 ### [https://starwars.jay.ml: Star Wars Clip Quiz](https://starwars.jayd.ml) [2021]

@@ -17,7 +17,7 @@ time use credit card number, just in case.
 
 Lo and behold, I just got this email:
 
-<img alt="there is only one ad and one video visible" src="assets/posts/2026-02-14-microsoft-game-pass-fraud/those_liars_and_cheats.png">
+<img alt="there is only one ad and one video visible" src="/assets/posts/2026-02-14-microsoft-game-pass-fraud/those_liars_and_cheats.png">
 
 Conveniently for those liars and cheats at Microsoft, *somehow* in the intervening
 three years autorenew got turned back on. Oopsie whoopsie sowwy 👉👈!
