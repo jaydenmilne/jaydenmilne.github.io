@@ -35,7 +35,7 @@ It stopped.
 
 I used a different HDMI cord.
 
-It continued to work.
+It started to work again.
 
  ̄\\_(ツ)_/ ̄ 
 
