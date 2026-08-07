@@ -13,8 +13,8 @@ It worked fine in the BIOS and in an Manjaro installer, so I got suspicious and
 for the first time in my storied career there was actually bad stick of RAM!
 
 This person had expressed interest in switching to Linux before, and they had
-done enough fiddling around with drivers (plus the OS was installed with bad ram
-- I'm never trusting it again) that I convinced them to install Manjaro.
+done enough fiddling around with drivers (plus the OS was installed with bad ram - 
+I'm never trusting it again) that I convinced them to install Manjaro.
 
 The mouse worked fine in the installer, rebooted, no mouse. Or keyboard now! We
 made it worse!
@@ -37,7 +37,7 @@ I used a different HDMI cord.
 
 It continued to work.
 
- ̄\_(ツ)_/ ̄ 
+ ̄\\_(ツ)_/ ̄ 
 
 Reminds me of the time [I had a cheap USB switch that would cause WiFi / HDMI
 radio interference](https://www.youtube.com/watch?v=n2DPLEvwO-k) 
