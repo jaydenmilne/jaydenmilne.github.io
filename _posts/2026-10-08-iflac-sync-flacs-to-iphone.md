@@ -7,7 +7,7 @@ date:   2026-10-08 18:33
 > **COGNITOHAZARD WARNING:** This README is written by a real life meat computer
 > but the rest of the project is 100% vibecoded
 
-https://github.com/jaydens-tasty-slop/iFlac
+[https://github.com/jaydens-tasty-slop/iFlac](https://github.com/jaydens-tasty-slop/iFlac)
 
 I have a growing FLAC collection that I'd like on my phone, but I don't want to
 have to boot Windows to use the Apple Music app or (shudders) iTunes. 

@@ -13,8 +13,9 @@ slop together a little go app you can run on a cronjob to generate an HTML repor
 
 ## For a demo of the report, see here:
 
-https://jaydens-tasty-slop.github.io/minecraft-log-analyzer/
-Here's the repo: https://github.com/jaydens-tasty-slop/minecraft-log-analyzer
+[https://jaydens-tasty-slop.github.io/minecraft-log-analyzer/](https://jaydens-tasty-slop.github.io/minecraft-log-analyzer/)
+
+Here's the repo: [https://github.com/jaydens-tasty-slop/minecraft-log-analyzer](https://github.com/jaydens-tasty-slop/minecraft-log-analyzer)
 
 It saves events it parses out of the logs into a sqlite database, then incrementally
 parses new files daily if you run it in a cronjob.
