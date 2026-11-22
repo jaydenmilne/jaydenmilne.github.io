@@ -279,13 +279,9 @@ sanity check for me.
 <img alt="frequency response" src="/assets/posts/2026-11-14-rockbox-on-yp3/fr.png">
 
 <details>
-
 <summary>More charts that I don't understand</summary>
-
 <img alt="Harmonic distortion vs fundemental frequency" src="/assets/posts/2026-11-14-rockbox-on-yp3/hd_freq.png">
-
 <img alt="total harmonic distortion vs level" src="/assets/posts/2026-11-14-rockbox-on-yp3/thdn_level.png">
-
 </details>
 
 ### The Hardest Parts
@@ -382,6 +378,14 @@ favorite), Asterism, Chaldani, Lavenia, Cyanotype.
 
 Note that heavy themes can cause some issues, so I would suggest sticking with
 lightweight ones.
+
+# Fin
+
+Well, reverse engineering a completely undocumented chipset was one of the 
+hardest things I could think of to do, and Claude can ace it. I'm planning on
+porting Rockbox to a bunch of other cheap MP3 players. 
+
+[THEY ALL SHALL RUN ROCKBOX!](https://rockslop.jayd.ml/players/)
 
 # Appendix: Identifying a YP3
 
