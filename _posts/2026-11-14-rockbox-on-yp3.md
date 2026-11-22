@@ -4,6 +4,7 @@ title:  "Porting Rockbox to an undocumented $9 Aliexpress 'YP3' MP3 Player with 
 date:   2026-11-14 08:55
 ---
 
+
 [Rockbox](https://www.rockbox.org/) is a wonderful old custom firmware project for
 a variety of MP3 players and iPods. Flashing rockbox to my [Sansa E200](https://en.wikipedia.org/wiki/Sansa_e200_series)
 was a seminal moment for me: computers were everywhere, and if they didn't do
@@ -20,6 +21,9 @@ TL;DR: it ported Rockbox to a 512 KiB player, I was barely involved.
 Then, I had it build a re-usable toolkit/set of skills for future ports based on
 what worked from the first attempt approach, and Claude was able to get Rockbox 
 running on another MP3 player (TS47) in 4 hours.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4_XmC1UqO1U?si=zrLtwsddV3i1syp6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 **I made a quick website for the project: [https://rockslop.jayd.ml](https://rockslop.jayd.ml)**
 
